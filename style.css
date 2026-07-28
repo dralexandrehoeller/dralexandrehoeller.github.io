@@ -151,13 +151,13 @@ h2{
 }
 
 .botao.transparente{
-    background:transparent;
-    border:2px solid #fff;
-    color:#fff;
+    background:#fff;
+    color:#333;
+    border:none;
 }
 
-.botao.verde:hover{
-    background:#326756;
+.botao.transparente:hover{
+    background:#f5f5f5;
 }
 
 .botao.branco:hover{
