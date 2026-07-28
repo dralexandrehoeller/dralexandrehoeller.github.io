@@ -10,6 +10,10 @@
 }
 
 body{
+   html{
+    scroll-behavior:smooth;
+}
+   
     font-family:Inter,sans-serif;
     background:#FAFAF7;
     color:#333;
@@ -17,6 +21,29 @@ body{
 }
 
 header{
+   .menu{
+    max-width:1150px;
+    margin:auto;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.menu ul{
+    display:flex;
+    gap:28px;
+    list-style:none;
+}
+
+.menu a{
+    color:#fff;
+    text-decoration:none;
+    font-weight:500;
+}
+
+.menu a:hover{
+    opacity:.8;
+}
     background:#28594F;
     color:white;
     padding:70px 20px;
@@ -33,6 +60,9 @@ header{
 
 .hero img{
     width:320px;
+    max-width:100%;
+    height:auto;
+    display:block;
     border-radius:20px;
     box-shadow:0 15px 40px rgba(0,0,0,.25);
 }
@@ -86,6 +116,7 @@ h2{
     text-decoration:none;
     font-weight:bold;
     transition:.3s;
+    text-align:center;
 }
 
 .botao:hover{
@@ -146,6 +177,7 @@ section{
     max-width:850px;
     margin:auto;
     text-align:center;
+    line-height:1.9;
 }
 
 .cards{
@@ -168,6 +200,7 @@ section{
 
 .card:hover{
     transform:translateY(-6px);
+    box-shadow:0 15px 35px rgba(0,0,0,.12);
 }
 
 .card h3{
@@ -229,7 +262,16 @@ footer{
 }
 
 @media(max-width:850px){
+.menu{
+    flex-direction:column;
+    gap:20px;
+}
 
+.menu ul{
+    flex-wrap:wrap;
+    justify-content:center;
+}
+   
 .hero{
     justify-content:center;
     text-align:center;
@@ -263,4 +305,9 @@ h2{
     grid-template-columns:1fr;
 
 }
+   
+   a:focus-visible{
+    outline:3px solid #3F7F6D;
+    outline-offset:3px;
+
 }
