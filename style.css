@@ -44,9 +44,14 @@ header{
     color:#fff;
     text-decoration:none;
     font-weight:500;
+    transition:opacity .3s;
 }
 
 .menu a:hover{
+    opacity:.8;
+}
+
+.menu a:focus-visible{
     opacity:.8;
 }
 
@@ -116,8 +121,12 @@ h2{
     border-radius:8px;
     text-decoration:none;
     font-weight:bold;
-    transition:.3s;
-    text-align:center;
+    transition:
+    background-color .3s,
+    color .3s,
+    transform .3s,
+    box-shadow .3s;
+    cursor:pointer;
 }
 
 .botao:hover{
@@ -269,10 +278,11 @@ footer{
         gap:20px;
     }
 
-    .menu ul{
-        flex-wrap:wrap;
-        justify-content:center;
-    }
+   .menu ul{
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:16px;
+}
 
     .hero{
         justify-content:center;
