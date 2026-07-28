@@ -9,11 +9,11 @@
     box-sizing:border-box;
 }
 
-body{
-   html{
+html{
     scroll-behavior:smooth;
 }
-   
+
+body{
     font-family:Inter,sans-serif;
     background:#FAFAF7;
     color:#333;
@@ -21,7 +21,12 @@ body{
 }
 
 header{
-   .menu{
+    background:#28594F;
+    color:white;
+    padding:70px 20px;
+}
+
+.menu{
     max-width:1150px;
     margin:auto;
     display:flex;
@@ -43,10 +48,6 @@ header{
 
 .menu a:hover{
     opacity:.8;
-}
-    background:#28594F;
-    color:white;
-    padding:70px 20px;
 }
 
 .hero{
@@ -262,52 +263,53 @@ footer{
 }
 
 @media(max-width:850px){
-.menu{
-    flex-direction:column;
-    gap:20px;
+
+    .menu{
+        flex-direction:column;
+        gap:20px;
+    }
+
+    .menu ul{
+        flex-wrap:wrap;
+        justify-content:center;
+    }
+
+    .hero{
+        justify-content:center;
+        text-align:center;
+    }
+
+    .hero img{
+        width:260px;
+    }
+
+    h1{
+        font-size:40px;
+    }
+
+    h2{
+        font-size:24px;
+    }
+
+    .hero p{
+        font-size:18px;
+    }
+
+    .botoes{
+        justify-content:center;
+    }
+
+    .pilares{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .passos{
+        grid-template-columns:1fr;
+    }
+
 }
 
-.menu ul{
-    flex-wrap:wrap;
-    justify-content:center;
-}
-   
-.hero{
-    justify-content:center;
-    text-align:center;
-}
-
-.hero img{
-    width:260px;
-}
-
-h1{
-    font-size:40px;
-}
-
-h2{
-    font-size:24px;
-}
-
-.hero p{
-    font-size:18px;
-}
-
-   .botoes{
-    justify-content:center;
-}
-
-.pilares{
-    grid-template-columns:repeat(2,1fr);
-}
-
-.passos{
-    grid-template-columns:1fr;
-
-}
-   
-   a:focus-visible{
+a:focus-visible{
     outline:3px solid #3F7F6D;
     outline-offset:3px;
-
 }
