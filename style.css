@@ -50,14 +50,18 @@ header{
     transition:opacity .3s;
 }
 
-.menu a:hover{
-    opacity:.8;
-}
-
-.menu a:focus-visible{
+.menu a{
     transition:
         color .3s,
         opacity .3s;
+}
+
+.menu a:hover{
+    color:#D8E8E3;
+}
+
+.menu a:focus-visible{
+    color:#D8E8E3;
 }
 
 .hero{
