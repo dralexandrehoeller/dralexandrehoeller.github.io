@@ -227,7 +227,7 @@ header{
 #pesquisa,
 #avaliacoes,
 #contato{
-    scroll-margin-top:calc(var(--altura-cabecalho) + 16px);
+    scroll-margin-top:var(--altura-cabecalho);
 }
 
 .menu{
@@ -390,6 +390,10 @@ header{
 /* ===========================
    HERO
 =========================== */
+
+.hero{
+    padding-top:48px;
+}
 
 .hero .secao-conteudo{
     display:flex;
