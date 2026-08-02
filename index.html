@@ -86,6 +86,12 @@
 <path d="M14 3.5v4h4"/>
 <path d="M8.5 12h7M8.5 15.5h7M8.5 8.5h3"/>
 </symbol>
+<symbol id="icone-menu" viewBox="0 0 24 24">
+<path d="M4 7h16M4 12h16M4 17h16"/>
+</symbol>
+<symbol id="icone-fechar" viewBox="0 0 24 24">
+<path d="M5 5l14 14M19 5 5 19"/>
+</symbol>
 </svg>
 
 <header>
@@ -121,7 +127,7 @@
 </span>
 </a>
 
-<ul>
+<ul id="menu-lista">
 <li><a href="#inicio">Início</a></li>
 <li><a href="#atuacao">Atuação</a></li>
 <li><a href="#sobre">Sobre</a></li>
@@ -129,6 +135,11 @@
 <li><a href="#avaliacoes">Avaliações</a></li>
 <li><a href="#contato">Contato</a></li>
 </ul>
+
+<button type="button" class="menu-alternar" aria-expanded="false" aria-controls="menu-lista" aria-label="Abrir menu">
+<svg class="icone icone-abrir" aria-hidden="true"><use href="#icone-menu"></use></svg>
+<svg class="icone icone-fechar" aria-hidden="true"><use href="#icone-fechar"></use></svg>
+</button>
 
 </nav>
 
@@ -422,6 +433,8 @@ Florianópolis – SC
 <p>Médico Clínico Geral • Florianópolis – SC</p>
 <p>© 2026 Todos os direitos reservados.</p>
 </footer>
+
+<script src="script.js" defer></script>
 
 </body>
 
