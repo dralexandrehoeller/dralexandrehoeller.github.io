@@ -1,6 +1,33 @@
 (function () {
     'use strict';
 
+    // Mede a altura real do header sticky (a topbar pode quebrar linha em
+    // telas estreitas) e mantém a variável usada pelo scroll-margin-top
+    // das seções, para que o cabeçalho fixo não cubra o topo do conteúdo
+    // ao clicar em um link do menu.
+    var cabecalho = document.querySelector('header');
+
+    function atualizarAlturaCabecalho() {
+        if (cabecalho) {
+            document.documentElement.style.setProperty(
+                '--altura-cabecalho',
+                cabecalho.offsetHeight + 'px'
+            );
+        }
+    }
+
+    atualizarAlturaCabecalho();
+    window.addEventListener('resize', atualizarAlturaCabecalho);
+    window.addEventListener('load', atualizarAlturaCabecalho);
+
+    if (document.fonts && document.fonts.ready) {
+        document.fonts.ready.then(atualizarAlturaCabecalho);
+    }
+})();
+
+(function () {
+    'use strict';
+
     var botao = document.querySelector('.menu-alternar');
     var lista = document.getElementById('menu-lista');
 

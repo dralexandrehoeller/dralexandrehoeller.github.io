@@ -24,6 +24,7 @@
 
     --largura-maxima: 1180px;
     --raio: 18px;
+    --altura-cabecalho: 150px; /* substituído em tempo real pelo script.js */
 }
 
 *{
@@ -217,6 +218,16 @@ header{
     z-index:1000;
     background:var(--papel);
     border-bottom:1px solid var(--linha);
+}
+
+/* compensa a altura do header sticky ao rolar até uma âncora do menu */
+#inicio,
+#atuacao,
+#sobre,
+#pesquisa,
+#avaliacoes,
+#contato{
+    scroll-margin-top:calc(var(--altura-cabecalho) + 16px);
 }
 
 .menu{
