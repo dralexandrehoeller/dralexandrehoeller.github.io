@@ -354,3 +354,110 @@ a:focus-visible{
     outline:3px solid #3F7F6D;
     outline-offset:3px;
 }
+
+/* ===========================
+   CONTATO
+=========================== */
+
+.contato{
+
+    text-align:center;
+
+}
+
+.contato-subtitulo{
+
+    max-width:650px;
+    margin:0 auto 50px;
+    font-size:20px;
+
+}
+
+.contato-card{
+
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+    align-items:center;
+    text-align:center;
+    min-height:260px;
+
+}
+
+.contato-card h3{
+
+    color:#28594F;
+    margin-bottom:18px;
+    font-size:28px;
+
+}
+
+.contato-texto{
+
+    margin-bottom:28px;
+
+}
+
+.botao.whatsapp{
+
+    background:#25D366;
+    color:white;
+    width:100%;
+    max-width:300px;
+
+}
+
+.botao.whatsapp:hover{
+
+    background:#1EBE5D;
+    color:white;
+
+}
+
+.email-contato{
+
+    margin-top:70px;
+
+}
+
+.email-contato h3{
+
+    color:#28594F;
+    margin-bottom:15px;
+
+}
+
+.email-contato a{
+
+    color:#28594F;
+    font-weight:600;
+    text-decoration:none;
+
+}
+
+.email-contato a:hover{
+
+    text-decoration:underline;
+
+}
+
+footer{
+
+    background:#28594F;
+    color:white;
+    text-align:center;
+    padding:45px 20px;
+
+}
+
+footer p{
+
+    margin-bottom:10px;
+
+}
+
+footer p:last-child{
+
+    margin-bottom:0;
+
+}
