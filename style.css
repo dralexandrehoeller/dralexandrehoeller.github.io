@@ -148,7 +148,8 @@ h2{
     display:flex;
     gap:18px;
     flex-wrap:wrap;
-    margin-top:35px;
+    justify-content:flex-start;
+    align-items:center;
 }
 
 .botao.verde{
@@ -290,6 +291,18 @@ footer{
 }
 
 @media(max-width:850px){
+
+    .botoes{
+        justify-content:center;
+    }
+
+    .botao{
+        width:100%;
+        max-width:340px;
+        text-align:center;
+    }
+
+}
 
     .menu{
         flex-direction:column;
