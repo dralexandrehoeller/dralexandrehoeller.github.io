@@ -83,7 +83,7 @@ a{
 }
 
 section{
-    padding:56px 25px 96px;
+    padding:32px 25px 96px;
 }
 
 .secao-conteudo{
@@ -392,7 +392,7 @@ header{
 =========================== */
 
 .hero{
-    padding-top:48px;
+    padding-top:24px;
 }
 
 .hero .secao-conteudo{
@@ -691,7 +691,7 @@ button:focus-visible{
 @media(max-width:860px){
 
     section{
-        padding:40px 20px 64px;
+        padding:24px 20px 64px;
     }
 
     .menu-alternar{
