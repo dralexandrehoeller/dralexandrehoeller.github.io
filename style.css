@@ -1,7 +1,7 @@
-/* ===========================
+/* ===================================================
    Dr. Alexandre A. Hoeller
-   Versão 2.0
-===========================*/
+   style.css
+=================================================== */
 
 *{
     margin:0;
@@ -14,450 +14,901 @@ html{
 }
 
 body{
-    font-family:Inter,sans-serif;
+    font-family:'Inter',sans-serif;
     background:#FAFAF7;
     color:#333;
     line-height:1.8;
 }
 
-header{
-    background:#28594F;
-    color:white;
-    padding:18px 20px;
-
-    position:sticky;
-    top:0;
-    z-index:1000;
-}
-.menu{
-    max-width:1150px;
-    margin:auto;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
+img{
+    max-width:100%;
+    display:block;
 }
 
-.menu ul{
-    display:flex;
-    gap:28px;
+a{
+    text-decoration:none;
+    color:inherit;
+}
+
+ul{
     list-style:none;
 }
 
-.menu a{
-    color:#fff;
-    text-decoration:none;
-    font-weight:500;
-    transition:opacity .3s;
-}
-
-.menu a{
-    transition:
-        color .3s,
-        opacity .3s;
-}
-
-.menu a:hover{
-    color:#D8E8E3;
-}
-
-.menu a:focus-visible{
-    color:#D8E8E3;
-}
-
-.hero{
-    max-width:1150px;
+.container{
+    width:min(1150px,92%);
     margin:auto;
+}
+
+/* ===========================
+   Barra superior fixa
+=========================== */
+
+.topbar{
+    position:sticky;
+    top:0;
+    z-index:1000;
+    background:#28594F;
+    color:#fff;
+    box-shadow:0 3px 12px rgba(0,0,0,.12);
+}
+
+.topbar .container{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:20px;
+    padding:14px 0;
+}
+
+.logo{
     display:flex;
     align-items:center;
-    gap:60px;
+    gap:15px;
+}
+
+.logo img{
+    width:56px;
+    height:56px;
+}
+
+.logo h1{
+    font-size:1.45rem;
+    font-family:'Lora',serif;
+    font-weight:700;
+    line-height:1.2;
+}
+
+.logo span{
+    display:block;
+    font-size:.90rem;
+    opacity:.85;
+}
+
+/* ===========================
+   Contatos
+=========================== */
+
+.contatos{
+    display:flex;
+    align-items:center;
+    gap:18px;
     flex-wrap:wrap;
 }
 
-.hero img{
-    width:320px;
-    max-width:100%;
-    height:auto;
-    display:block;
-    border-radius:20px;
-    box-shadow:0 15px 40px rgba(0,0,0,.25);
-}
-
-.hero-texto{
-    flex:1;
-    min-width:320px;
-}
-
-.hero-imagem{
-    flex:0 0 320px;
+.contato-box{
     display:flex;
-    justify-content:center;
+    align-items:center;
+    gap:10px;
+    background:rgba(255,255,255,.12);
+    padding:10px 16px;
+    border-radius:10px;
+    transition:.3s;
 }
 
-.destaque{
-    font-size:15px;
-    font-weight:600;
-    letter-spacing:1px;
-    color:#D8E8E3;
+.contato-box:hover{
+    background:rgba(255,255,255,.20);
+    transform:translateY(-2px);
+}
+
+.contato-box img{
+    width:28px;
+}
+
+.contato-box strong{
+    display:block;
+    font-size:.92rem;
+}
+
+.contato-box small{
+    display:block;
+    font-size:.78rem;
+    opacity:.9;
+}
+
+/* ===========================
+   Google
+=========================== */
+
+.google-link{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    background:#fff;
+    color:#28594F;
+    padding:10px 18px;
+    border-radius:10px;
+    font-weight:700;
+    transition:.3s;
+}
+
+.google-link img{
+    width:22px;
+}
+
+.google-link:hover{
+    transform:translateY(-2px);
+    box-shadow:0 8px 18px rgba(0,0,0,.15);
+}
+
+/* ===========================
+   Hero
+=========================== */
+
+.hero{
+    padding:70px 0;
+}
+
+.hero .container{
+    display:grid;
+    grid-template-columns:320px 1fr;
+    gap:60px;
+    align-items:center;
+}
+
+.hero img{
+    border-radius:22px;
+    box-shadow:0 15px 35px rgba(0,0,0,.20);
+}
+
+.hero h2{
+    font-family:'Lora',serif;
+    font-size:3rem;
+    color:#28594F;
     margin-bottom:10px;
 }
 
-.texto-principal{
-    max-width:650px;
-}
-
-h1{
-    font-family:Lora,serif;
-    font-size:54px;
-    margin-bottom:15px;
-}
-
-h2{
+.hero h3{
+    font-size:1.5rem;
     font-weight:400;
-    font-size:28px;
     margin-bottom:25px;
 }
 
 .hero p{
+    max-width:720px;
+    font-size:1.15rem;
+}
+
+/* ===========================
+   HERO
+=========================== */
+
+.hero{
+    max-width:1200px;
+    margin:auto;
+    padding:80px 25px;
+    display:grid;
+    grid-template-columns:350px 1fr;
+    gap:70px;
+    align-items:center;
+}
+
+.hero-imagem img{
+    width:100%;
+    border-radius:18px;
+    box-shadow:0 15px 40px rgba(0,0,0,.18);
+}
+
+.hero-texto h1{
+    font-family:"Lora",serif;
+    font-size:54px;
+    color:#28594F;
+    margin-bottom:10px;
+}
+
+.hero-texto h2{
+    font-size:28px;
+    font-weight:400;
+    color:#555;
+    margin-bottom:25px;
+}
+
+.hero-texto h2 span{
+    color:#3F7F6D;
+    font-weight:600;
+}
+
+.destaque{
+    color:#3F7F6D;
+    font-weight:700;
+    letter-spacing:1px;
+    margin-bottom:15px;
+}
+
+.texto-principal{
+    max-width:720px;
     font-size:20px;
-    max-width:700px;
-    margin-bottom:30px;
+    margin-bottom:35px;
+}
+
+/* ===========================
+   BOTÕES
+=========================== */
+
+.botoes{
+    display:flex;
+    flex-wrap:wrap;
+    gap:18px;
 }
 
 .botao{
-    display:inline-block;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    padding:16px 34px;
+    border-radius:10px;
+    text-decoration:none;
+    font-weight:600;
+    transition:.30s;
+}
+
+.botao.verde{
+    background:#28594F;
+    color:white;
+}
+
+.botao.branco{
     background:white;
     color:#28594F;
-    padding:18px 35px;
-    border-radius:8px;
-    text-decoration:none;
-    font-weight:bold;
-    transition:
-    background-color .3s,
-    color .3s,
-    transform .3s,
-    box-shadow .3s;
-    cursor:pointer;
+    border:2px solid #28594F;
+}
+
+.botao.transparente{
+    color:#28594F;
 }
 
 .botao:hover{
     transform:translateY(-3px);
-    box-shadow:0 10px 20px rgba(0,0,0,.15);
+    box-shadow:0 8px 20px rgba(0,0,0,.15);
 }
 
-.botoes{
-    display:flex;
-    gap:18px;
-    flex-wrap:wrap;
-    justify-content:flex-start;
-    align-items:center;
+/* ===========================
+   PILARES
+=========================== */
+
+.pilares{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:30px;
+    margin-top:70px;
 }
 
-.botao.verde{
-    background:#3F7F6D;
-    color:#fff;
+.pilar{
+    text-align:center;
 }
 
-.botao.branco{
-    background:#fff;
+.pilar img{
+    width:48px;
+    margin-bottom:15px;
+}
+
+.pilar h3{
     color:#28594F;
+    margin-bottom:8px;
 }
 
-.botao.transparente{
-    background:#fff;
-    color:#333;
-    border:none;
+.pilar p{
+    font-size:15px;
+    color:#666;
 }
 
-.botao.branco:hover{
-    background:#F2F2F2;
-}
-
-.botao.transparente:hover{
-    background:#fff;
-    color:#28594F;
-}
+/* ==================================================
+   SEÇÕES
+================================================== */
 
 section{
-    max-width:1150px;
+    padding:90px 25px;
+}
+
+.bloco{
+    max-width:1200px;
     margin:auto;
-    padding:80px 25px;
+}
+
+.cinza{
+    background:#F3F5F4;
 }
 
 .titulo{
-    font-family:Lora,serif;
+    text-align:center;
+    font-family:"Lora",serif;
     color:#28594F;
     font-size:40px;
-    margin-bottom:35px;
-    text-align:center;
+    margin-bottom:55px;
 }
 
 .texto-centro{
-    max-width:850px;
+    max-width:900px;
     margin:auto;
     text-align:center;
-    line-height:1.9;
 }
 
 .texto-centro p{
-    margin-bottom:22px;
+    margin-bottom:24px;
+    font-size:18px;
 }
 
-.texto-centro p:last-child{
-    margin-bottom:0;
-}
+/* ==================================================
+   CARDS
+================================================== */
 
 .cards{
     display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-    gap:25px;
-}
-
-.cards.quatro{
-    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    grid-template-columns:repeat(auto-fit,minmax(270px,1fr));
+    gap:30px;
 }
 
 .card{
     background:#fff;
-    border:1px solid #ECECEC;
-    border-radius:15px;
-    padding:30px;
-    box-shadow:0 8px 25px rgba(0,0,0,.08);
-    transition:
-        transform .3s,
-        box-shadow .3s;
+    border-radius:16px;
+    padding:34px;
+    border:1px solid #E6E6E6;
+    box-shadow:0 8px 25px rgba(0,0,0,.06);
+    transition:.30s;
 }
 
 .card:hover{
-    transform:translateY(-6px);
-    box-shadow:0 15px 35px rgba(0,0,0,.12);
+    transform:translateY(-8px);
+    box-shadow:0 18px 35px rgba(0,0,0,.10);
 }
 
 .card h3{
     color:#28594F;
-    margin-bottom:15px;
+    margin-bottom:18px;
+    font-size:22px;
 }
 
-.pilares{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
-    gap:25px;
-    margin-top:60px;
+.card p{
+    color:#555;
 }
 
-.pilares div{
-    text-align:center;
-}
+/* ==================================================
+   PASSOS
+================================================== */
 
 .passos{
     display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-    gap:25px;
+    grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+    gap:28px;
 }
 
 .passo{
     background:#fff;
-    border-radius:15px;
-    padding:30px;
+    padding:35px;
+    border-radius:16px;
     text-align:center;
-    box-shadow:0 8px 25px rgba(0,0,0,.08);
+    box-shadow:0 8px 20px rgba(0,0,0,.08);
 }
 
 .passo span{
-    display:inline-flex;
+
+    width:55px;
+    height:55px;
+
+    display:flex;
     justify-content:center;
     align-items:center;
-    width:45px;
-    height:45px;
+
+    margin:auto;
+    margin-bottom:20px;
+
     border-radius:50%;
     background:#28594F;
+
     color:#fff;
     font-weight:bold;
+    font-size:22px;
+
+}
+
+.passo h3{
+
+    color:#28594F;
     margin-bottom:15px;
+
 }
 
-.bloco{
+/* ==================================================
+   AVALIAÇÕES GOOGLE
+================================================== */
+
+.avaliacoes{
+
+    background:white;
     padding:90px 25px;
+
 }
 
-.cinza{
-    background:#F2F4F3;
+.carousel{
+
+    max-width:850px;
+    margin:50px auto 0;
+    position:relative;
+
 }
 
-footer{
-    background:#28594F;
-    color:white;
-    text-align:center;
+.review{
+
+    background:#fff;
+
+    border-radius:18px;
+
+    border:1px solid #E5E5E5;
+
     padding:40px;
-}
 
-@media(max-width:850px){
-
-    .botoes{
-        justify-content:center;
-    }
-
-    .botao{
-        width:100%;
-        max-width:340px;
-        text-align:center;
-    }
+    box-shadow:0 12px 30px rgba(0,0,0,.08);
 
 }
 
-    .menu{
-        flex-direction:column;
-        gap:20px;
-    }
+.review .estrelas{
 
-   .menu ul{
-    flex-wrap:wrap;
-    justify-content:center;
-    gap:16px;
-}
+    font-size:26px;
+    color:#F4B400;
 
-    .hero{
-        justify-content:center;
-        text-align:center;
-    }
-
-    .hero img{
-        width:260px;
-    }
-
-    h1{
-        font-size:40px;
-    }
-
-    h2{
-        font-size:24px;
-    }
-
-    .hero p{
-        font-size:18px;
-    }
-
-    .botoes{
-        justify-content:center;
-    }
-
-    .pilares{
-        grid-template-columns:repeat(2,1fr);
-    }
-
-    .passos{
-        grid-template-columns:1fr;
-    }
+    margin-bottom:18px;
 
 }
 
-a:focus-visible{
-    outline:3px solid #3F7F6D;
-    outline-offset:3px;
+.review p{
+
+    font-size:19px;
+    line-height:1.9;
+
+    color:#444;
+
 }
 
-/* ===========================
+.review .autor{
+
+    margin-top:30px;
+
+    color:#666;
+
+    font-weight:600;
+
+    filter:blur(4px);
+
+    user-select:none;
+
+}
+
+/* ==================================================
    CONTATO
-=========================== */
+================================================== */
 
-.contato{
+.contato-grid{
 
-    text-align:center;
+    display:grid;
 
-}
+    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
 
-.contato-subtitulo{
+    gap:35px;
 
-    max-width:650px;
-    margin:0 auto 50px;
-    font-size:20px;
+    margin-top:45px;
 
 }
 
 .contato-card{
 
-    display:flex;
-    flex-direction:column;
-    justify-content:space-between;
-    align-items:center;
+    background:#fff;
+
+    border-radius:18px;
+
+    padding:35px;
+
+    box-shadow:0 10px 28px rgba(0,0,0,.08);
+
+    border:1px solid #E6E6E6;
+
     text-align:center;
-    min-height:260px;
+
+}
+
+.contato-card img{
+
+    width:54px;
+
+    margin:auto;
+
+    margin-bottom:20px;
 
 }
 
 .contato-card h3{
 
     color:#28594F;
+
     margin-bottom:18px;
-    font-size:28px;
 
 }
 
-.contato-texto{
+.contato-card p{
 
-    margin-bottom:28px;
-
-}
-
-.botao.whatsapp{
-
-    background:#25D366;
-    color:white;
-    width:100%;
-    max-width:300px;
+    margin-bottom:12px;
 
 }
 
-.botao.whatsapp:hover{
-
-    background:#1EBE5D;
-    color:white;
-
-}
-
-.email-contato{
-
-    margin-top:70px;
-
-}
-
-.email-contato h3{
+.contato-card a{
 
     color:#28594F;
-    margin-bottom:15px;
 
-}
-
-.email-contato a{
-
-    color:#28594F;
     font-weight:600;
-    text-decoration:none;
 
 }
 
-.email-contato a:hover{
+.contato-card a:hover{
 
     text-decoration:underline;
 
 }
 
+/* ==================================================
+   FOOTER
+================================================== */
+
 footer{
 
     background:#28594F;
+
     color:white;
+
     text-align:center;
+
     padding:45px 20px;
 
 }
 
 footer p{
 
-    margin-bottom:10px;
+    opacity:.9;
+
+    margin-bottom:8px;
 
 }
 
-footer p:last-child{
+footer small{
 
-    margin-bottom:0;
+    opacity:.75;
 
 }
+
+/* ==================================================
+   ANIMAÇÕES
+================================================== */
+
+@keyframes fadeUp{
+
+    from{
+        opacity:0;
+        transform:translateY(30px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+
+}
+
+.hero,
+.card,
+.passo,
+.review,
+.contato-card{
+
+    animation:fadeUp .8s ease both;
+
+}
+
+/* ==================================================
+   HOVER
+================================================== */
+
+.menu a{
+
+    position:relative;
+
+}
+
+.menu a::after{
+
+    content:"";
+
+    position:absolute;
+
+    left:0;
+    bottom:-6px;
+
+    width:0;
+    height:2px;
+
+    background:white;
+
+    transition:.3s;
+
+}
+
+.menu a:hover::after{
+
+    width:100%;
+
+}
+
+.logo img{
+
+    transition:.35s;
+
+}
+
+.logo:hover img{
+
+    transform:rotate(-3deg) scale(1.04);
+
+}
+
+/* ==================================================
+   ACESSIBILIDADE
+================================================== */
+
+a:focus-visible,
+button:focus-visible{
+
+    outline:3px solid #3F7F6D;
+    outline-offset:4px;
+
+}
+
+img{
+
+    user-select:none;
+
+}
+
+/* ==================================================
+   SELEÇÃO
+================================================== */
+
+::selection{
+
+    background:#28594F;
+    color:white;
+
+}
+
+/* ==================================================
+   SCROLLBAR
+================================================== */
+
+::-webkit-scrollbar{
+
+    width:10px;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+    background:#28594F;
+    border-radius:10px;
+
+}
+
+::-webkit-scrollbar-track{
+
+    background:#F2F2F2;
+
+}
+
+/* ==================================================
+   MOBILE
+================================================== */
+
+@media (max-width:980px){
+
+.hero{
+
+    grid-template-columns:1fr;
+    text-align:center;
+    gap:40px;
+
+}
+
+.hero img{
+
+    width:280px;
+    margin:auto;
+
+}
+
+.hero-texto{
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+
+}
+
+.botoes{
+
+    justify-content:center;
+
+}
+
+.pilares{
+
+    grid-template-columns:repeat(2,1fr);
+
+}
+
+.menu{
+
+    flex-direction:column;
+    gap:20px;
+
+}
+
+.menu ul{
+
+    justify-content:center;
+    flex-wrap:wrap;
+
+}
+
+.topbar .container{
+
+    flex-direction:column;
+    gap:15px;
+
+}
+
+.contatos{
+
+    justify-content:center;
+
+}
+
+}
+
+/* ==================================================
+   CELULAR
+================================================== */
+
+@media (max-width:640px){
+
+h1{
+
+    font-size:2.2rem;
+
+}
+
+h2{
+
+    font-size:1.5rem;
+
+}
+
+.titulo{
+
+    font-size:2rem;
+
+}
+
+.hero p,
+.texto-centro p{
+
+    font-size:17px;
+
+}
+
+.cards,
+.passos,
+.contato-grid{
+
+    grid-template-columns:1fr;
+
+}
+
+.pilares{
+
+    grid-template-columns:1fr;
+
+}
+
+.botao{
+
+    width:100%;
+    justify-content:center;
+
+}
+
+.logo{
+
+    flex-direction:column;
+    text-align:center;
+
+}
+
+.logo img{
+
+    width:70px;
+
+}
+
+.contato-box{
+
+    width:100%;
+    justify-content:center;
+
+}
+
+.google-link{
+
+    width:100%;
+    justify-content:center;
+
+}
+
+.review{
+
+    padding:28px;
+
+}
+
+.review p{
+
+    font-size:17px;
+
+}
+
+}
+
+/* ==================================================
+   DESKTOP GRANDE
+================================================== */
+
+@media (min-width:1400px){
+
+.container,
+.hero,
+.bloco{
+
+    max-width:1280px;
+
+}
+
+.hero h1{
+
+    font-size:64px;
+
+}
+
+.hero h2{
+
+    font-size:32px;
+
+}
+
+}
+
+/* ==================================================
+   FIM
+================================================== */
