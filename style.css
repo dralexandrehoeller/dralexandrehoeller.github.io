@@ -151,44 +151,6 @@ ul{
 }
 
 /* ===========================
-   Hero
-=========================== */
-
-.hero{
-    padding:70px 0;
-}
-
-.hero .container{
-    display:grid;
-    grid-template-columns:320px 1fr;
-    gap:60px;
-    align-items:center;
-}
-
-.hero img{
-    border-radius:22px;
-    box-shadow:0 15px 35px rgba(0,0,0,.20);
-}
-
-.hero h2{
-    font-family:'Lora',serif;
-    font-size:3rem;
-    color:#28594F;
-    margin-bottom:10px;
-}
-
-.hero h3{
-    font-size:1.5rem;
-    font-weight:400;
-    margin-bottom:25px;
-}
-
-.hero p{
-    max-width:720px;
-    font-size:1.15rem;
-}
-
-/* ===========================
    HERO
 =========================== */
 
@@ -912,3 +874,6 @@ h2{
 /* ==================================================
    FIM
 ================================================== */
+
+
+section{scroll-margin-top:90px;}
