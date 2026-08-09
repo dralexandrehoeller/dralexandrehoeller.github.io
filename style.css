@@ -105,24 +105,32 @@ a{
     padding:16px 0;
 }
 
-.topbar-wrapper{
+/* Linha 1: identificação + ações */
+.topbar-top{
     display:flex;
     justify-content:space-between;
     align-items:center;
     gap:24px;
-    flex-wrap:wrap;
+    padding:2px 0;
 }
 
 .logo-info .nome-topo{
-    font-size:1.3rem;
+    font-size:1.35rem;
     font-family:'Lora', serif;
     font-weight:700;
     line-height:1.2;
+    margin-bottom:6px;
+}
+
+.logo-sub{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    flex-wrap:wrap;
 }
 
 .medico-info{
-    display:block;
-    font-size:0.8rem;
+    font-size:0.82rem;
     opacity:0.9;
 }
 
@@ -130,10 +138,15 @@ a{
     display:inline-block;
     font-size:0.75rem;
     background:rgba(255, 255, 255, 0.18);
-    padding:2px 8px;
+    padding:3px 10px;
     border-radius:20px;
-    margin-top:4px;
     font-weight:500;
+}
+
+.topbar-actions{
+    display:flex;
+    align-items:center;
+    gap:14px;
 }
 
 /* Botão do menu mobile (hamburguer) */
@@ -147,7 +160,7 @@ a{
     background:transparent;
     border:none;
     cursor:pointer;
-    order:2;
+    flex-shrink:0;
 }
 
 .menu-toggle span{
@@ -171,19 +184,23 @@ a{
     transform:translateY(-7px) rotate(-45deg);
 }
 
-/* Menu de Links do Topo */
+/* Linha 2: menu de navegação, separado por uma linha divisória */
 .nav-menu{
     display:flex;
-    gap:16px;
+    justify-content:center;
+    gap:8px;
     align-items:center;
-    order:3;
+    flex-wrap:wrap;
+    border-top:1px solid rgba(255,255,255,0.15);
+    margin-top:14px;
+    padding-top:10px;
 }
 
 .nav-link{
     color:var(--white);
-    font-size:1.02rem;
+    font-size:0.98rem;
     font-weight:600;
-    padding:8px 14px;
+    padding:7px 14px;
     border-radius:var(--radius-sm);
     transition:background .2s, transform .2s;
     letter-spacing:0.2px;
@@ -207,7 +224,6 @@ a{
     font-size:0.92rem;
     transition:background .3s, transform .2s;
     white-space:nowrap;
-    order:4;
 }
 
 .btn-whatsapp:hover{
@@ -312,6 +328,207 @@ a{
 .card-rede.lattes:hover{ color:var(--primary); }
 
 /* ==================================================
+   AVALIAÇÕES (GOOGLE)
+================================================== */
+
+.avaliacoes-resumo{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:28px;
+    flex-wrap:wrap;
+    background:var(--white);
+    border:1px solid #E2E8F0;
+    border-radius:var(--radius-md);
+    padding:24px 32px;
+    max-width:800px;
+    margin:0 auto 40px;
+    box-shadow:var(--shadow-sm);
+}
+
+.google-selo{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    width:52px;
+    height:52px;
+    border-radius:50%;
+    background:var(--bg-alt);
+    flex-shrink:0;
+}
+
+.avaliacoes-nota{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    text-align:center;
+}
+
+.nota-numero{
+    font-family:"Lora", serif;
+    font-size:2.2rem;
+    font-weight:700;
+    color:var(--primary);
+    line-height:1;
+}
+
+.nota-estrelas{
+    color:#F5B400;
+    font-size:1.15rem;
+    letter-spacing:2px;
+    margin:4px 0;
+}
+
+.nota-legenda{
+    font-size:0.82rem;
+    color:var(--text-muted);
+}
+
+.btn-avaliar{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    background:var(--primary);
+    color:var(--white);
+    padding:12px 24px;
+    border-radius:var(--radius-sm);
+    font-weight:600;
+    font-size:0.92rem;
+    white-space:nowrap;
+    transition:background .3s, transform .2s;
+}
+
+.btn-avaliar:hover{
+    background:var(--primary-light);
+    transform:translateY(-2px);
+}
+
+/* Carrossel */
+.carousel{
+    position:relative;
+    max-width:900px;
+    margin:0 auto;
+}
+
+.carousel-viewport{
+    overflow:hidden;
+    border-radius:var(--radius-md);
+}
+
+.carousel-track{
+    display:flex;
+    transition:transform .5s ease;
+}
+
+.avaliacao-card{
+    flex:0 0 100%;
+    background:var(--white);
+    border:1px solid #E2E8F0;
+    border-radius:var(--radius-md);
+    padding:32px 40px;
+    box-shadow:var(--shadow-sm);
+    min-height:180px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+}
+
+.avaliacao-topo{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:14px;
+}
+
+.avaliacao-texto{
+    font-size:1.05rem;
+    color:var(--text-color);
+    font-style:italic;
+    line-height:1.7;
+    margin-bottom:16px;
+}
+
+.avaliacao-autor{
+    font-weight:600;
+    color:var(--primary);
+    font-size:0.95rem;
+}
+
+/* Setas */
+.carousel-seta{
+    position:absolute;
+    top:50%;
+    transform:translateY(-50%);
+    width:40px;
+    height:40px;
+    border-radius:50%;
+    border:1px solid #E2E8F0;
+    background:var(--white);
+    color:var(--primary);
+    font-size:1.4rem;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    box-shadow:var(--shadow-sm);
+    transition:background .2s, transform .2s;
+    z-index:5;
+}
+
+.carousel-seta:hover{
+    background:var(--primary);
+    color:var(--white);
+}
+
+.carousel-seta.prev{ left:-20px; }
+.carousel-seta.next{ right:-20px; }
+
+/* Dots */
+.carousel-dots{
+    display:flex;
+    justify-content:center;
+    gap:8px;
+    margin-top:20px;
+}
+
+.carousel-dot{
+    width:9px;
+    height:9px;
+    border-radius:50%;
+    background:#D1D9D6;
+    border:none;
+    cursor:pointer;
+    padding:0;
+    transition:background .3s, transform .3s;
+}
+
+.carousel-dot.ativo{
+    background:var(--primary);
+    transform:scale(1.3);
+}
+
+@media (max-width:600px){
+    .avaliacao-card{
+        padding:26px 24px;
+    }
+
+    .carousel-seta{
+        width:34px;
+        height:34px;
+        font-size:1.2rem;
+    }
+
+    .carousel-seta.prev{ left:-8px; }
+    .carousel-seta.next{ right:-8px; }
+
+    .avaliacoes-resumo{
+        flex-direction:column;
+        text-align:center;
+        padding:24px;
+    }
+}
+
+/* ==================================================
    RODAPÉ E BOTÃO TOPO
 ================================================== */
 
@@ -374,20 +591,23 @@ footer{
         display:flex;
     }
 
-    .topbar-wrapper{
+    .topbar-top{
         position:relative;
+    }
+
+    .btn-whatsapp span.texto-whatsapp{
+        display:none;
     }
 
     .nav-menu{
         display:none;
         flex-direction:column;
         width:100%;
-        order:5;
         gap:4px;
         background:var(--primary-light);
         border-radius:var(--radius-sm);
         padding:10px;
-        margin-top:10px;
+        border-top:none;
     }
 
     .nav-menu.aberto{
@@ -399,19 +619,32 @@ footer{
         padding:10px;
     }
 
-    .topbar-wrapper{
-        justify-content:space-between;
-    }
-
     .logo-info{
         flex:1;
+        min-width:0;
     }
 
-    .btn-whatsapp{
-        order:6;
-        width:100%;
-        justify-content:center;
-        margin-top:6px;
+    .logo-info .nome-topo{
+        font-size:1.1rem;
+    }
+}
+
+@media (max-width:560px){
+    .topbar-actions .btn-whatsapp{
+        padding:10px 14px;
+        font-size:0;
+        gap:0;
+    }
+
+    .topbar-actions .btn-whatsapp .whatsapp-icon{
+        width:20px;
+        height:20px;
+    }
+
+    .logo-sub{
+        flex-direction:column;
+        align-items:flex-start;
+        gap:4px;
     }
 }
 
