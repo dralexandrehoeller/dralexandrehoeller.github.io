@@ -72,6 +72,26 @@ a{
 }
 
 /* ==================================================
+   ACESSIBILIDADE - SKIP LINK
+================================================== */
+
+.skip-link{
+    position:absolute;
+    top:-60px;
+    left:16px;
+    background:var(--primary);
+    color:var(--white);
+    padding:10px 18px;
+    border-radius:var(--radius-sm);
+    z-index:2000;
+    transition:top .2s;
+}
+
+.skip-link:focus{
+    top:16px;
+}
+
+/* ==================================================
    BARRA SUPERIOR (TOPBAR)
 ================================================== */
 
@@ -90,9 +110,10 @@ a{
     justify-content:space-between;
     align-items:center;
     gap:24px;
+    flex-wrap:wrap;
 }
 
-.logo-info h1{
+.logo-info .nome-topo{
     font-size:1.3rem;
     font-family:'Lora', serif;
     font-weight:700;
@@ -115,11 +136,47 @@ a{
     font-weight:500;
 }
 
-/* Menu de Links do Topo (Destaque e Espaçamento) */
+/* Botão do menu mobile (hamburguer) */
+.menu-toggle{
+    display:none;
+    flex-direction:column;
+    justify-content:center;
+    gap:5px;
+    width:38px;
+    height:38px;
+    background:transparent;
+    border:none;
+    cursor:pointer;
+    order:2;
+}
+
+.menu-toggle span{
+    display:block;
+    width:100%;
+    height:2px;
+    background:var(--white);
+    border-radius:2px;
+    transition:transform .25s, opacity .25s;
+}
+
+.menu-toggle[aria-expanded="true"] span:nth-child(1){
+    transform:translateY(7px) rotate(45deg);
+}
+
+.menu-toggle[aria-expanded="true"] span:nth-child(2){
+    opacity:0;
+}
+
+.menu-toggle[aria-expanded="true"] span:nth-child(3){
+    transform:translateY(-7px) rotate(-45deg);
+}
+
+/* Menu de Links do Topo */
 .nav-menu{
     display:flex;
     gap:16px;
     align-items:center;
+    order:3;
 }
 
 .nav-link{
@@ -150,6 +207,7 @@ a{
     font-size:0.92rem;
     transition:background .3s, transform .2s;
     white-space:nowrap;
+    order:4;
 }
 
 .btn-whatsapp:hover{
@@ -310,22 +368,50 @@ footer{
    RESPONSIVIDADE
 ================================================== */
 
-@media (max-width:1024px){
+/* Ativa o menu hamburguer em telas menores */
+@media (max-width:900px){
+    .menu-toggle{
+        display:flex;
+    }
+
     .topbar-wrapper{
-        flex-direction:column;
-        text-align:center;
-        gap:16px;
+        position:relative;
     }
 
     .nav-menu{
-        flex-wrap:wrap;
-        justify-content:center;
-        gap:8px;
+        display:none;
+        flex-direction:column;
+        width:100%;
+        order:5;
+        gap:4px;
+        background:var(--primary-light);
+        border-radius:var(--radius-sm);
+        padding:10px;
+        margin-top:10px;
+    }
+
+    .nav-menu.aberto{
+        display:flex;
     }
 
     .nav-link{
-        font-size:0.92rem;
-        padding:6px 10px;
+        text-align:center;
+        padding:10px;
+    }
+
+    .topbar-wrapper{
+        justify-content:space-between;
+    }
+
+    .logo-info{
+        flex:1;
+    }
+
+    .btn-whatsapp{
+        order:6;
+        width:100%;
+        justify-content:center;
+        margin-top:6px;
     }
 }
 
