@@ -1,6 +1,6 @@
 /* ===================================================
    Dr. Alexandre A. Hoeller
-   style.css (Versão Atualizada)
+   style.css
 =================================================== */
 
 /* Variáveis Globais */
@@ -16,10 +16,8 @@
     --white: #ffffff;
     --shadow-sm: 0 3px 12px rgba(0,0,0,.08);
     --shadow-md: 0 8px 25px rgba(0,0,0,.08);
-    --shadow-lg: 0 15px 40px rgba(0,0,0,.15);
     --radius-sm: 8px;
     --radius-md: 16px;
-    --radius-lg: 18px;
 }
 
 *{
@@ -36,13 +34,13 @@ body{
     font-family:'Inter', sans-serif;
     background:var(--bg-body);
     color:var(--text-color);
-    line-height:1.8;
+    line-height:1.6;
 }
 
 img{
     max-width:100%;
+    height:auto;
     display:block;
-    user-select:none;
 }
 
 a{
@@ -50,23 +48,15 @@ a{
     color:inherit;
 }
 
-ul{
-    list-style:none;
-}
-
-section{
-    padding:90px 25px;
-    scroll-margin-top:90px;
-}
-
 .container{
-    width:min(1150px, 92%);
+    width:min(1200px, 92%);
     margin:auto;
 }
 
-.bloco{
-    max-width:1200px;
-    margin:auto;
+.secao{
+    padding:90px 0;
+    scroll-margin-top:100px;
+    min-height:300px;
 }
 
 .cinza{
@@ -78,22 +68,11 @@ section{
     font-family:"Lora", serif;
     color:var(--primary);
     font-size:2.5rem;
-    margin-bottom:55px;
-}
-
-.texto-centro{
-    max-width:900px;
-    margin:auto;
-    text-align:center;
-}
-
-.texto-centro p{
-    margin-bottom:24px;
-    font-size:1.125rem;
+    margin-bottom:40px;
 }
 
 /* ==================================================
-   BARRA SUPERIOR FIXA (TOPBAR)
+   BARRA SUPERIOR (TOPBAR)
 ================================================== */
 
 .topbar{
@@ -103,35 +82,19 @@ section{
     background:var(--primary);
     color:var(--white);
     box-shadow:var(--shadow-sm);
+    padding:14px 0;
 }
 
-.topbar .container{
+.topbar-wrapper{
     display:flex;
     justify-content:space-between;
     align-items:center;
     gap:20px;
-    padding:12px 0;
-}
-
-.logo{
-    display:flex;
-    align-items:center;
-    gap:16px;
-}
-
-/* Logo Estilizado (Ícone SVG) */
-.logo-icon{
-    width:42px;
-    height:42px;
-    color:var(--white);
-    background:rgba(255, 255, 255, 0.12);
-    padding:8px;
-    border-radius:12px;
-    flex-shrink:0;
+    flex-wrap:wrap;
 }
 
 .logo-info h1{
-    font-size:1.35rem;
+    font-size:1.25rem;
     font-family:'Lora', serif;
     font-weight:700;
     line-height:1.2;
@@ -139,9 +102,8 @@ section{
 
 .medico-info{
     display:block;
-    font-size:0.82rem;
+    font-size:0.8rem;
     opacity:0.9;
-    font-weight:400;
 }
 
 .foco-badge{
@@ -150,69 +112,91 @@ section{
     background:rgba(255, 255, 255, 0.18);
     padding:2px 8px;
     border-radius:20px;
-    margin-top:3px;
+    margin-top:4px;
     font-weight:500;
-    letter-spacing:0.3px;
 }
 
-/* Botão WhatsApp */
+/* Menu de Links do Topo */
+.nav-menu{
+    display:flex;
+    gap:18px;
+    align-items:center;
+}
+
+.nav-link{
+    color:var(--white);
+    font-size:0.95rem;
+    font-weight:500;
+    opacity:0.9;
+    padding:6px 10px;
+    border-radius:var(--radius-sm);
+    transition:background .2s, opacity .2s;
+}
+
+.nav-link:hover{
+    opacity:1;
+    background:rgba(255, 255, 255, 0.15);
+}
+
+/* Botão WhatsApp Topbar */
 .btn-whatsapp{
     display:inline-flex;
     align-items:center;
-    gap:10px;
+    gap:8px;
     background:var(--whatsapp);
     color:var(--white);
-    padding:10px 20px;
+    padding:10px 18px;
     border-radius:var(--radius-sm);
     font-weight:600;
-    font-size:0.95rem;
-    transition:background .3s, transform .3s, box-shadow .3s;
+    font-size:0.9rem;
+    transition:background .3s, transform .2s;
 }
 
 .btn-whatsapp:hover{
     background:var(--whatsapp-hover);
     transform:translateY(-2px);
-    box-shadow:0 6px 16px rgba(37, 211, 102, 0.35);
 }
 
 .whatsapp-icon{
-    width:20px;
-    height:20px;
+    width:18px;
+    height:18px;
 }
 
 /* ==================================================
-   HERO
+   HERO / INÍCIO
 ================================================== */
 
 .hero{
-    max-width:1200px;
-    margin:auto;
-    padding:80px 25px;
+    padding:80px 0;
+    scroll-margin-top:100px;
+}
+
+.hero-grid{
     display:grid;
-    grid-template-columns:350px 1fr;
-    gap:70px;
+    grid-template-columns:300px 1fr;
+    gap:50px;
     align-items:center;
-    animation:fadeUp .8s ease both;
 }
 
 .hero-imagem img{
     width:100%;
-    border-radius:var(--radius-lg);
-    box-shadow:var(--shadow-lg);
+    max-width:300px;
+    border-radius:var(--radius-md);
+    box-shadow:var(--shadow-md);
+    object-fit:cover;
 }
 
 .hero-texto h1{
     font-family:"Lora", serif;
-    font-size:3.375rem;
+    font-size:3rem;
     color:var(--primary);
     margin-bottom:10px;
 }
 
 .hero-texto h2{
-    font-size:1.75rem;
+    font-size:1.5rem;
     font-weight:400;
-    color:#555;
-    margin-bottom:25px;
+    color:var(--text-muted);
 }
 
 .hero-texto h2 span{
@@ -224,334 +208,68 @@ section{
     color:var(--primary-light);
     font-weight:700;
     letter-spacing:1px;
-    margin-bottom:15px;
-}
-
-.texto-principal{
-    max-width:720px;
-    font-size:1.25rem;
-    margin-bottom:35px;
+    margin-bottom:10px;
 }
 
 /* ==================================================
-   BOTÕES
+   RODAPÉ E BOTÃO TOPO
 ================================================== */
-
-.botoes{
-    display:flex;
-    flex-wrap:wrap;
-    gap:18px;
-}
-
-.botao{
-    display:inline-flex;
-    align-items:center;
-    justify-content:center;
-    padding:16px 34px;
-    border-radius:var(--radius-sm);
-    font-weight:600;
-    transition:transform .3s, box-shadow .3s;
-}
-
-.botao.verde{
-    background:var(--primary);
-    color:var(--white);
-}
-
-.botao.branco{
-    background:var(--white);
-    color:var(--primary);
-    border:2px solid var(--primary);
-}
-
-.botao.transparente{
-    color:var(--primary);
-}
-
-.botao:hover{
-    transform:translateY(-3px);
-    box-shadow:0 8px 20px rgba(0,0,0,.15);
-}
-
-/* ==================================================
-   PILARES, CARDS E PASSOS
-================================================== */
-
-.pilares{
-    display:grid;
-    grid-template-columns:repeat(4, 1fr);
-    gap:30px;
-    margin-top:70px;
-}
-
-.pilar{
-    text-align:center;
-}
-
-.pilar img{
-    width:48px;
-    margin-bottom:15px;
-}
-
-.pilar h3{
-    color:var(--primary);
-    margin-bottom:8px;
-}
-
-.pilar p{
-    font-size:0.9375rem;
-    color:var(--text-muted);
-}
-
-.cards{
-    display:grid;
-    grid-template-columns:repeat(auto-fit, minmax(270px, 1fr));
-    gap:30px;
-}
-
-.card{
-    background:var(--white);
-    border-radius:var(--radius-md);
-    padding:34px;
-    border:1px solid #E6E6E6;
-    box-shadow:var(--shadow-sm);
-    transition:transform .3s, box-shadow .3s;
-}
-
-.card:hover{
-    transform:translateY(-8px);
-    box-shadow:var(--shadow-md);
-}
-
-.card h3{
-    color:var(--primary);
-    margin-bottom:18px;
-    font-size:1.375rem;
-}
-
-.card p{
-    color:#555;
-}
-
-.passos{
-    display:grid;
-    grid-template-columns:repeat(auto-fit, minmax(240px, 1fr));
-    gap:28px;
-}
-
-.passo{
-    background:var(--white);
-    padding:35px;
-    border-radius:var(--radius-md);
-    text-align:center;
-    box-shadow:var(--shadow-sm);
-}
-
-.passo span{
-    width:55px;
-    height:55px;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    margin:0 auto 20px auto;
-    border-radius:50%;
-    background:var(--primary);
-    color:var(--white);
-    font-weight:bold;
-    font-size:1.375rem;
-}
-
-.passo h3{
-    color:var(--primary);
-    margin-bottom:15px;
-}
-
-/* ==================================================
-   AVALIAÇÕES GOOGLE
-================================================== */
-
-.avaliacoes{
-    background:var(--white);
-    padding:90px 25px;
-}
-
-.carousel{
-    max-width:850px;
-    margin:50px auto 0;
-    position:relative;
-}
-
-.review{
-    background:var(--white);
-    border-radius:var(--radius-lg);
-    border:1px solid #E5E5E5;
-    padding:40px;
-    box-shadow:var(--shadow-sm);
-}
-
-.review .estrelas{
-    font-size:1.625rem;
-    color:#F4B400;
-    margin-bottom:18px;
-}
-
-.review p{
-    font-size:1.1875rem;
-    line-height:1.9;
-    color:#444;
-}
-
-.review .autor{
-    margin-top:30px;
-    color:var(--text-muted);
-    font-weight:600;
-}
-
-/* ==================================================
-   CONTATO E FOOTER
-================================================== */
-
-.contato-grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit, minmax(300px, 1fr));
-    gap:35px;
-    margin-top:45px;
-}
-
-.contato-card{
-    background:var(--white);
-    border-radius:var(--radius-lg);
-    padding:35px;
-    box-shadow:var(--shadow-sm);
-    border:1px solid #E6E6E6;
-    text-align:center;
-}
-
-.contato-card img{
-    width:54px;
-    margin:0 auto 20px auto;
-}
-
-.contato-card h3{
-    color:var(--primary);
-    margin-bottom:18px;
-}
-
-.contato-card p{
-    margin-bottom:12px;
-}
-
-.contato-card a{
-    color:var(--primary);
-    font-weight:600;
-}
-
-.contato-card a:hover{
-    text-decoration:underline;
-}
 
 footer{
     background:var(--primary);
     color:var(--white);
     text-align:center;
-    padding:45px 20px;
+    padding:30px 0;
+    margin-top:50px;
+    font-size:0.9rem;
+    opacity:0.95;
 }
 
-footer p{
-    opacity:.9;
-    margin-bottom:8px;
-}
-
-footer small{
-    opacity:.75;
-}
-
-/* ==================================================
-   ANIMAÇÕES & ACESSIBILIDADE
-================================================== */
-
-@keyframes fadeUp{
-    from{
-        opacity:0;
-        transform:translateY(30px);
-    }
-    to{
-        opacity:1;
-        transform:translateY(0);
-    }
-}
-
-a:focus-visible,
-button:focus-visible{
-    outline:3px solid var(--primary-light);
-    outline-offset:4px;
-}
-
-::selection{
+/* Botão Flutuante Voltar ao Topo */
+.btn-topo{
+    position:fixed;
+    bottom:25px;
+    right:25px;
     background:var(--primary);
     color:var(--white);
+    width:42px;
+    height:42px;
+    border-radius:50%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    box-shadow:var(--shadow-md);
+    font-size:0.85rem;
+    z-index:999;
+    transition:background .3s, transform .2s;
 }
 
-::-webkit-scrollbar{
-    width:10px;
-}
-
-::-webkit-scrollbar-thumb{
-    background:var(--primary);
-    border-radius:10px;
-}
-
-::-webkit-scrollbar-track{
-    background:#F2F2F2;
+.btn-topo:hover{
+    background:var(--primary-light);
+    transform:translateY(-3px);
 }
 
 /* ==================================================
-   RESPONSIVIDADE (MEDIA QUERIES)
+   RESPONSIVIDADE
 ================================================== */
 
-@media (max-width:980px){
-    .hero{
-        grid-template-columns:1fr;
-        text-align:center;
-        gap:40px;
-    }
-
-    .hero img{
-        width:280px;
-        margin:auto;
-    }
-
-    .hero-texto{
-        display:flex;
+@media (max-width:880px){
+    .topbar-wrapper{
         flex-direction:column;
-        align-items:center;
+        text-align:center;
+        gap:14px;
     }
 
-    .botoes{
+    .nav-menu{
+        flex-wrap:wrap;
         justify-content:center;
-    }
-
-    .pilares{
-        grid-template-columns:repeat(2, 1fr);
-    }
-}
-
-@media (max-width:640px){
-    .topbar .container{
-        flex-direction:column;
-        align-items:stretch;
-        text-align:center;
-        gap:12px;
-    }
-
-    .logo{
-        flex-direction:column;
         gap:8px;
     }
 
-    .btn-whatsapp{
-        width:100%;
-        justify-content:center;
+    .hero-grid{
+        grid-template-columns:1fr;
+        text-align:center;
+        justify-items:center;
     }
 
     .hero-texto h1{
@@ -559,42 +277,6 @@ button:focus-visible{
     }
 
     .hero-texto h2{
-        font-size:1.4rem;
-    }
-
-    .titulo{
-        font-size:1.8rem;
-    }
-
-    .cards,
-    .passos,
-    .contato-grid,
-    .pilares{
-        grid-template-columns:1fr;
-    }
-
-    .botao{
-        width:100%;
-        justify-content:center;
-    }
-
-    .review{
-        padding:24px;
-    }
-}
-
-@media (min-width:1400px){
-    .container,
-    .hero,
-    .bloco{
-        max-width:1280px;
-    }
-
-    .hero h1{
-        font-size:4rem;
-    }
-
-    .hero h2{
-        font-size:2rem;
+        font-size:1.25rem;
     }
 }
