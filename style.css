@@ -1,7 +1,24 @@
 /* ===================================================
    Dr. Alexandre A. Hoeller
-   style.css
+   style.css (Versão Otimizada)
 =================================================== */
+
+/* Variáveis Globais */
+:root {
+    --primary: #28594F;
+    --primary-light: #3F7F6D;
+    --bg-body: #FAFAF7;
+    --bg-alt: #F3F5F4;
+    --text-color: #333333;
+    --text-muted: #666666;
+    --white: #ffffff;
+    --shadow-sm: 0 3px 12px rgba(0,0,0,.08);
+    --shadow-md: 0 8px 25px rgba(0,0,0,.08);
+    --shadow-lg: 0 15px 40px rgba(0,0,0,.15);
+    --radius-sm: 10px;
+    --radius-md: 16px;
+    --radius-lg: 18px;
+}
 
 *{
     margin:0;
@@ -14,15 +31,16 @@ html{
 }
 
 body{
-    font-family:'Inter',sans-serif;
-    background:#FAFAF7;
-    color:#333;
+    font-family:'Inter', sans-serif;
+    background:var(--bg-body);
+    color:var(--text-color);
     line-height:1.8;
 }
 
 img{
     max-width:100%;
     display:block;
+    user-select:none;
 }
 
 a{
@@ -34,9 +52,42 @@ ul{
     list-style:none;
 }
 
+section{
+    padding:90px 25px;
+    scroll-margin-top:90px;
+}
+
 .container{
-    width:min(1150px,92%);
+    width:min(1150px, 92%);
     margin:auto;
+}
+
+.bloco{
+    max-width:1200px;
+    margin:auto;
+}
+
+.cinza{
+    background:var(--bg-alt);
+}
+
+.titulo{
+    text-align:center;
+    font-family:"Lora", serif;
+    color:var(--primary);
+    font-size:2.5rem;
+    margin-bottom:55px;
+}
+
+.texto-centro{
+    max-width:900px;
+    margin:auto;
+    text-align:center;
+}
+
+.texto-centro p{
+    margin-bottom:24px;
+    font-size:1.125rem;
 }
 
 /* ===========================
@@ -47,9 +98,9 @@ ul{
     position:sticky;
     top:0;
     z-index:1000;
-    background:#28594F;
-    color:#fff;
-    box-shadow:0 3px 12px rgba(0,0,0,.12);
+    background:var(--primary);
+    color:var(--white);
+    box-shadow:var(--shadow-sm);
 }
 
 .topbar .container{
@@ -69,11 +120,16 @@ ul{
 .logo img{
     width:56px;
     height:56px;
+    transition:transform .35s ease;
+}
+
+.logo:hover img{
+    transform:rotate(-3deg) scale(1.04);
 }
 
 .logo h1{
     font-size:1.45rem;
-    font-family:'Lora',serif;
+    font-family:'Lora', serif;
     font-weight:700;
     line-height:1.2;
 }
@@ -84,8 +140,33 @@ ul{
     opacity:.85;
 }
 
+.menu{
+    display:flex;
+    align-items:center;
+    gap:20px;
+}
+
+.menu a{
+    position:relative;
+}
+
+.menu a::after{
+    content:"";
+    position:absolute;
+    left:0;
+    bottom:-6px;
+    width:0;
+    height:2px;
+    background:var(--white);
+    transition:.3s;
+}
+
+.menu a:hover::after{
+    width:100%;
+}
+
 /* ===========================
-   Contatos
+   Contatos e Google
 =========================== */
 
 .contatos{
@@ -101,8 +182,8 @@ ul{
     gap:10px;
     background:rgba(255,255,255,.12);
     padding:10px 16px;
-    border-radius:10px;
-    transition:.3s;
+    border-radius:var(--radius-sm);
+    transition:transform .3s, background .3s;
 }
 
 .contato-box:hover{
@@ -125,20 +206,16 @@ ul{
     opacity:.9;
 }
 
-/* ===========================
-   Google
-=========================== */
-
 .google-link{
     display:flex;
     align-items:center;
     gap:8px;
-    background:#fff;
-    color:#28594F;
+    background:var(--white);
+    color:var(--primary);
     padding:10px 18px;
-    border-radius:10px;
+    border-radius:var(--radius-sm);
     font-weight:700;
-    transition:.3s;
+    transition:transform .3s, box-shadow .3s;
 }
 
 .google-link img{
@@ -162,35 +239,36 @@ ul{
     grid-template-columns:350px 1fr;
     gap:70px;
     align-items:center;
+    animation:fadeUp .8s ease both; /* Mantida apenas no topo */
 }
 
 .hero-imagem img{
     width:100%;
-    border-radius:18px;
-    box-shadow:0 15px 40px rgba(0,0,0,.18);
+    border-radius:var(--radius-lg);
+    box-shadow:var(--shadow-lg);
 }
 
 .hero-texto h1{
-    font-family:"Lora",serif;
-    font-size:54px;
-    color:#28594F;
+    font-family:"Lora", serif;
+    font-size:3.375rem;
+    color:var(--primary);
     margin-bottom:10px;
 }
 
 .hero-texto h2{
-    font-size:28px;
+    font-size:1.75rem;
     font-weight:400;
     color:#555;
     margin-bottom:25px;
 }
 
 .hero-texto h2 span{
-    color:#3F7F6D;
+    color:var(--primary-light);
     font-weight:600;
 }
 
 .destaque{
-    color:#3F7F6D;
+    color:var(--primary-light);
     font-weight:700;
     letter-spacing:1px;
     margin-bottom:15px;
@@ -198,7 +276,7 @@ ul{
 
 .texto-principal{
     max-width:720px;
-    font-size:20px;
+    font-size:1.25rem;
     margin-bottom:35px;
 }
 
@@ -217,25 +295,24 @@ ul{
     align-items:center;
     justify-content:center;
     padding:16px 34px;
-    border-radius:10px;
-    text-decoration:none;
+    border-radius:var(--radius-sm);
     font-weight:600;
-    transition:.30s;
+    transition:transform .3s, box-shadow .3s;
 }
 
 .botao.verde{
-    background:#28594F;
-    color:white;
+    background:var(--primary);
+    color:var(--white);
 }
 
 .botao.branco{
-    background:white;
-    color:#28594F;
-    border:2px solid #28594F;
+    background:var(--white);
+    color:var(--primary);
+    border:2px solid var(--primary);
 }
 
 .botao.transparente{
-    color:#28594F;
+    color:var(--primary);
 }
 
 .botao:hover{
@@ -244,12 +321,12 @@ ul{
 }
 
 /* ===========================
-   PILARES
+   PILARES, CARDS E PASSOS
 =========================== */
 
 .pilares{
     display:grid;
-    grid-template-columns:repeat(4,1fr);
+    grid-template-columns:repeat(4, 1fr);
     gap:30px;
     margin-top:70px;
 }
@@ -264,129 +341,76 @@ ul{
 }
 
 .pilar h3{
-    color:#28594F;
+    color:var(--primary);
     margin-bottom:8px;
 }
 
 .pilar p{
-    font-size:15px;
-    color:#666;
+    font-size:0.9375rem;
+    color:var(--text-muted);
 }
-
-/* ==================================================
-   SEÇÕES
-================================================== */
-
-section{
-    padding:90px 25px;
-}
-
-.bloco{
-    max-width:1200px;
-    margin:auto;
-}
-
-.cinza{
-    background:#F3F5F4;
-}
-
-.titulo{
-    text-align:center;
-    font-family:"Lora",serif;
-    color:#28594F;
-    font-size:40px;
-    margin-bottom:55px;
-}
-
-.texto-centro{
-    max-width:900px;
-    margin:auto;
-    text-align:center;
-}
-
-.texto-centro p{
-    margin-bottom:24px;
-    font-size:18px;
-}
-
-/* ==================================================
-   CARDS
-================================================== */
 
 .cards{
     display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(270px,1fr));
+    grid-template-columns:repeat(auto-fit, minmax(270px, 1fr));
     gap:30px;
 }
 
 .card{
-    background:#fff;
-    border-radius:16px;
+    background:var(--white);
+    border-radius:var(--radius-md);
     padding:34px;
     border:1px solid #E6E6E6;
-    box-shadow:0 8px 25px rgba(0,0,0,.06);
-    transition:.30s;
+    box-shadow:var(--shadow-sm);
+    transition:transform .3s, box-shadow .3s;
 }
 
 .card:hover{
     transform:translateY(-8px);
-    box-shadow:0 18px 35px rgba(0,0,0,.10);
+    box-shadow:var(--shadow-md);
 }
 
 .card h3{
-    color:#28594F;
+    color:var(--primary);
     margin-bottom:18px;
-    font-size:22px;
+    font-size:1.375rem;
 }
 
 .card p{
     color:#555;
 }
 
-/* ==================================================
-   PASSOS
-================================================== */
-
 .passos{
     display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+    grid-template-columns:repeat(auto-fit, minmax(240px, 1fr));
     gap:28px;
 }
 
 .passo{
-    background:#fff;
+    background:var(--white);
     padding:35px;
-    border-radius:16px;
+    border-radius:var(--radius-md);
     text-align:center;
-    box-shadow:0 8px 20px rgba(0,0,0,.08);
+    box-shadow:var(--shadow-sm);
 }
 
 .passo span{
-
     width:55px;
     height:55px;
-
     display:flex;
     justify-content:center;
     align-items:center;
-
-    margin:auto;
-    margin-bottom:20px;
-
+    margin:0 auto 20px auto;
     border-radius:50%;
-    background:#28594F;
-
-    color:#fff;
+    background:var(--primary);
+    color:var(--white);
     font-weight:bold;
-    font-size:22px;
-
+    font-size:1.375rem;
 }
 
 .passo h3{
-
-    color:#28594F;
+    color:var(--primary);
     margin-bottom:15px;
-
 }
 
 /* ==================================================
@@ -394,486 +418,249 @@ section{
 ================================================== */
 
 .avaliacoes{
-
-    background:white;
+    background:var(--white);
     padding:90px 25px;
-
 }
 
 .carousel{
-
     max-width:850px;
     margin:50px auto 0;
     position:relative;
-
 }
 
 .review{
-
-    background:#fff;
-
-    border-radius:18px;
-
+    background:var(--white);
+    border-radius:var(--radius-lg);
     border:1px solid #E5E5E5;
-
     padding:40px;
-
-    box-shadow:0 12px 30px rgba(0,0,0,.08);
-
+    box-shadow:var(--shadow-sm);
 }
 
 .review .estrelas{
-
-    font-size:26px;
+    font-size:1.625rem;
     color:#F4B400;
-
     margin-bottom:18px;
-
 }
 
 .review p{
-
-    font-size:19px;
+    font-size:1.1875rem;
     line-height:1.9;
-
     color:#444;
-
 }
 
 .review .autor{
-
     margin-top:30px;
-
-    color:#666;
-
+    color:var(--text-muted);
     font-weight:600;
-
-    filter:blur(4px);
-
-    user-select:none;
-
 }
 
 /* ==================================================
-   CONTATO
+   CONTATO & FOOTER
 ================================================== */
 
 .contato-grid{
-
     display:grid;
-
-    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
-
+    grid-template-columns:repeat(auto-fit, minmax(300px, 1fr));
     gap:35px;
-
     margin-top:45px;
-
 }
 
 .contato-card{
-
-    background:#fff;
-
-    border-radius:18px;
-
+    background:var(--white);
+    border-radius:var(--radius-lg);
     padding:35px;
-
-    box-shadow:0 10px 28px rgba(0,0,0,.08);
-
+    box-shadow:var(--shadow-sm);
     border:1px solid #E6E6E6;
-
     text-align:center;
-
 }
 
 .contato-card img{
-
     width:54px;
-
-    margin:auto;
-
-    margin-bottom:20px;
-
+    margin:0 auto 20px auto;
 }
 
 .contato-card h3{
-
-    color:#28594F;
-
+    color:var(--primary);
     margin-bottom:18px;
-
 }
 
 .contato-card p{
-
     margin-bottom:12px;
-
 }
 
 .contato-card a{
-
-    color:#28594F;
-
+    color:var(--primary);
     font-weight:600;
-
 }
 
 .contato-card a:hover{
-
     text-decoration:underline;
-
 }
 
-/* ==================================================
-   FOOTER
-================================================== */
-
 footer{
-
-    background:#28594F;
-
-    color:white;
-
+    background:var(--primary);
+    color:var(--white);
     text-align:center;
-
     padding:45px 20px;
-
 }
 
 footer p{
-
     opacity:.9;
-
     margin-bottom:8px;
-
 }
 
 footer small{
-
     opacity:.75;
-
 }
 
 /* ==================================================
-   ANIMAÇÕES
+   ANIMAÇÕES & ACESSIBILIDADE
 ================================================== */
 
 @keyframes fadeUp{
-
     from{
         opacity:0;
         transform:translateY(30px);
     }
-
     to{
         opacity:1;
         transform:translateY(0);
     }
-
 }
-
-.hero,
-.card,
-.passo,
-.review,
-.contato-card{
-
-    animation:fadeUp .8s ease both;
-
-}
-
-/* ==================================================
-   HOVER
-================================================== */
-
-.menu a{
-
-    position:relative;
-
-}
-
-.menu a::after{
-
-    content:"";
-
-    position:absolute;
-
-    left:0;
-    bottom:-6px;
-
-    width:0;
-    height:2px;
-
-    background:white;
-
-    transition:.3s;
-
-}
-
-.menu a:hover::after{
-
-    width:100%;
-
-}
-
-.logo img{
-
-    transition:.35s;
-
-}
-
-.logo:hover img{
-
-    transform:rotate(-3deg) scale(1.04);
-
-}
-
-/* ==================================================
-   ACESSIBILIDADE
-================================================== */
 
 a:focus-visible,
 button:focus-visible{
-
-    outline:3px solid #3F7F6D;
+    outline:3px solid var(--primary-light);
     outline-offset:4px;
-
 }
-
-img{
-
-    user-select:none;
-
-}
-
-/* ==================================================
-   SELEÇÃO
-================================================== */
 
 ::selection{
-
-    background:#28594F;
-    color:white;
-
+    background:var(--primary);
+    color:var(--white);
 }
 
-/* ==================================================
-   SCROLLBAR
-================================================== */
-
 ::-webkit-scrollbar{
-
     width:10px;
-
 }
 
 ::-webkit-scrollbar-thumb{
-
-    background:#28594F;
+    background:var(--primary);
     border-radius:10px;
-
 }
 
 ::-webkit-scrollbar-track{
-
     background:#F2F2F2;
-
 }
 
 /* ==================================================
-   MOBILE
+   RESPONSIVIDADE (MEDIA QUERIES)
 ================================================== */
 
 @media (max-width:980px){
+    .hero{
+        grid-template-columns:1fr;
+        text-align:center;
+        gap:40px;
+    }
 
-.hero{
+    .hero img{
+        width:280px;
+        margin:auto;
+    }
 
-    grid-template-columns:1fr;
-    text-align:center;
-    gap:40px;
+    .hero-texto{
+        display:flex;
+        flex-direction:column;
+        align-items:center;
+    }
 
+    .botoes{
+        justify-content:center;
+    }
+
+    .pilares{
+        grid-template-columns:repeat(2, 1fr);
+    }
+
+    .topbar .container{
+        flex-direction:column;
+        gap:15px;
+    }
+
+    .contatos{
+        justify-content:center;
+    }
+
+    .menu{
+        flex-direction:column;
+        gap:15px;
+    }
 }
-
-.hero img{
-
-    width:280px;
-    margin:auto;
-
-}
-
-.hero-texto{
-
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-
-}
-
-.botoes{
-
-    justify-content:center;
-
-}
-
-.pilares{
-
-    grid-template-columns:repeat(2,1fr);
-
-}
-
-.menu{
-
-    flex-direction:column;
-    gap:20px;
-
-}
-
-.menu ul{
-
-    justify-content:center;
-    flex-wrap:wrap;
-
-}
-
-.topbar .container{
-
-    flex-direction:column;
-    gap:15px;
-
-}
-
-.contatos{
-
-    justify-content:center;
-
-}
-
-}
-
-/* ==================================================
-   CELULAR
-================================================== */
 
 @media (max-width:640px){
+    .hero-texto h1{
+        font-size:2.2rem;
+    }
 
-h1{
+    .hero-texto h2{
+        font-size:1.4rem;
+    }
 
-    font-size:2.2rem;
+    .titulo{
+        font-size:1.8rem;
+    }
 
+    .hero p,
+    .texto-centro p{
+        font-size:1rem;
+    }
+
+    .cards,
+    .passos,
+    .contato-grid,
+    .pilares{
+        grid-template-columns:1fr;
+    }
+
+    .botao,
+    .contato-box,
+    .google-link{
+        width:100%;
+        justify-content:center;
+    }
+
+    /* Ajuste para não poluir a tela no mobile */
+    .logo{
+        flex-direction:row; 
+        text-align:left;
+    }
+
+    .logo img{
+        width:42px;
+        height:42px;
+    }
+
+    .review{
+        padding:24px;
+    }
+
+    .review p{
+        font-size:1rem;
+    }
 }
-
-h2{
-
-    font-size:1.5rem;
-
-}
-
-.titulo{
-
-    font-size:2rem;
-
-}
-
-.hero p,
-.texto-centro p{
-
-    font-size:17px;
-
-}
-
-.cards,
-.passos,
-.contato-grid{
-
-    grid-template-columns:1fr;
-
-}
-
-.pilares{
-
-    grid-template-columns:1fr;
-
-}
-
-.botao{
-
-    width:100%;
-    justify-content:center;
-
-}
-
-.logo{
-
-    flex-direction:column;
-    text-align:center;
-
-}
-
-.logo img{
-
-    width:70px;
-
-}
-
-.contato-box{
-
-    width:100%;
-    justify-content:center;
-
-}
-
-.google-link{
-
-    width:100%;
-    justify-content:center;
-
-}
-
-.review{
-
-    padding:28px;
-
-}
-
-.review p{
-
-    font-size:17px;
-
-}
-
-}
-
-/* ==================================================
-   DESKTOP GRANDE
-================================================== */
 
 @media (min-width:1400px){
+    .container,
+    .hero,
+    .bloco{
+        max-width:1280px;
+    }
 
-.container,
-.hero,
-.bloco{
+    .hero h1{
+        font-size:4rem;
+    }
 
-    max-width:1280px;
-
+    .hero h2{
+        font-size:2rem;
+    }
 }
-
-.hero h1{
-
-    font-size:64px;
-
-}
-
-.hero h2{
-
-    font-size:32px;
-
-}
-
-}
-
-/* ==================================================
-   FIM
-================================================== */
-
-
-section{scroll-margin-top:90px;}
