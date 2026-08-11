@@ -247,17 +247,56 @@ a{
 
 .hero-grid{
     display:grid;
-    grid-template-columns:300px 1fr;
-    gap:50px;
+    grid-template-columns:320px 1fr;
+    gap:60px;
     align-items:center;
 }
 
-.hero-imagem img{
+.hero-imagem{
+    position:relative;
+    display:flex;
+    justify-content:center;
+}
+
+/* Forma decorativa atrás da foto */
+.hero-imagem::before{
+    content:"";
+    position:absolute;
+    top:-22px;
+    left:50%;
+    transform:translateX(-50%);
+    width:88%;
+    height:88%;
+    background:linear-gradient(135deg, var(--primary-light), var(--primary));
+    border-radius:38% 62% 63% 37% / 41% 44% 56% 59%;
+    opacity:0.16;
+    z-index:0;
+}
+
+.hero-imagem-moldura{
+    position:relative;
+    z-index:1;
     width:100%;
     max-width:300px;
-    border-radius:var(--radius-md);
+    aspect-ratio:3 / 4;
+    border-radius:38% 62% 63% 37% / 41% 44% 56% 59%;
+    overflow:hidden;
+    border:4px solid var(--white);
     box-shadow:var(--shadow-md);
+    transition:border-radius .6s ease;
+}
+
+.hero-imagem-moldura:hover{
+    border-radius:63% 37% 37% 63% / 59% 56% 44% 41%;
+}
+
+.hero-imagem-moldura img{
+    width:100%;
+    height:100%;
     object-fit:cover;
+    object-position:center top;
+    border-radius:0;
+    box-shadow:none;
 }
 
 .hero-texto h1{
@@ -362,6 +401,17 @@ a{
     color:var(--text-color);
     line-height:1.8;
     margin-bottom:16px;
+}
+
+.nota-secao{
+    font-size:1.05rem;
+    color:var(--primary);
+    font-style:italic;
+    text-align:center;
+    line-height:1.75;
+    margin-top:40px;
+    padding-top:28px;
+    border-top:1px solid #E2E8F0;
 }
 
 .link-lattes{
