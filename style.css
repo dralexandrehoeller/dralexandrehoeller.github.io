@@ -6,13 +6,13 @@
 /* Variáveis Globais */
 :root {
     --primary: #28594F;
-    --primary-light: #3F7F6D;
+    --primary-light: #3D7B6A;
     --bg-body: #FAFAF7;
     --bg-alt: #F3F5F4;
     --text-color: #333333;
     --text-muted: #666666;
-    --whatsapp: #25D366;
-    --whatsapp-hover: #20ba5a;
+    --whatsapp: #188842;
+    --whatsapp-hover: #15783A;
     --white: #ffffff;
     --shadow-sm: 0 3px 12px rgba(0,0,0,.08);
     --shadow-md: 0 8px 25px rgba(0,0,0,.08);
