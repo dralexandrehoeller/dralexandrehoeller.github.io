@@ -80,6 +80,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   function iniciarAutoplay() {
     if (slides.length <= 1) return;
+    pararAutoplay();
     autoplayId = setInterval(proximo, INTERVALO_AUTOPLAY);
   }
 
