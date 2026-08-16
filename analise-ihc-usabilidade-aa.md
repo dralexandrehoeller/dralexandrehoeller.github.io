@@ -1,132 +1,105 @@
 # Análise de IHC e Acessibilidade (nível AA) — dralexandrehoeller.github.io
 
-**Data da análise:** 15/08/2026
+**Data da análise original:** 15/08/2026
+**Última atualização:** 15/08/2026 — todos os 12 achados foram corrigidos e revalidados em navegador.
 **Escopo:** `index.html`, `style.css`, `script.js` (site estático, sem back-end/formulários)
-**Metodologia:** Avaliação heurística (Nielsen) + verificação de conformidade com as Diretrizes de Acessibilidade para Conteúdo Web (WCAG) 2.1/2.2, nível **AA** (que exige o cumprimento cumulativo de todos os critérios de Nível A + Nível AA). A revisão foi feita por leitura de código; itens que dependem de renderização real (zoom 400%, leitores de tela, contraste pixel-a-pixel) estão sinalizados como "a validar" com ferramenta automatizada.
+**Metodologia:** Avaliação heurística (Nielsen) + verificação de conformidade com as Diretrizes de Acessibilidade para Conteúdo Web (WCAG) 2.1/2.2, nível **AA** (que exige o cumprimento cumulativo de todos os critérios de Nível A + Nível AA). A revisão inicial foi feita por leitura de código; as correções foram testadas em navegador real (Chromium), incluindo navegação só por teclado, leitura do CSSOM computado e simulação de tempo de autoplay.
 
 ---
 
 ## Resumo executivo
 
-O site está **bem acima da média** de projetos deste porte em acessibilidade: já traz skip link, landmarks semânticos, hierarquia de headings consistente, `lang="pt-BR"`, ícones decorativos corretamente ocultados de leitores de tela e um menu mobile com `aria-expanded`/`aria-label` dinâmicos — sinais de que a acessibilidade foi pensada desde o início, não só "encaixada" depois.
+O site já partia de uma base sólida de acessibilidade (skip link, landmarks semânticos, hierarquia de headings consistente, `lang="pt-BR"`, ícones decorativos ocultados corretamente, menu mobile com `aria-expanded`/`aria-label` dinâmicos). Os 12 achados desta análise — 2 de alta prioridade, 4 de média e 6 de baixa (a numeração original tinha 5 itens de baixa; o item 9, resolvido manualmente pelo Arliones, foi incorporado à contagem) — **foram todos corrigidos**.
 
-Os pontos que impedem hoje uma conformidade AA completa se concentram quase todos em **um único componente: o carrossel de avaliações**. Fora dele, os achados são majoritariamente de refinamento (contraste no limite, textos truncados, pequenas melhorias de leitura por teclado/leitor de tela).
-
-| Prioridade | Nº de achados |
-|---|---|
-| 🔴 Alta (bloqueia conformidade AA) | 2 |
-| 🟡 Média | 4 |
-| 🟢 Baixa (refinamento) | 5 |
+| Prioridade | Nº de achados | Status |
+|---|---|---|
+| 🔴 Alta (bloqueava conformidade AA) | 2 | ✅ Resolvidos |
+| 🟡 Média | 4 | ✅ Resolvidos |
+| 🟢 Baixa (refinamento) | 6 | ✅ Resolvidos |
 
 ---
 
-## Pontos fortes já implementados
+## Pontos fortes já implementados (linha de base, antes das correções)
 
-- **Skip link funcional** — `<a href="#inicio" class="skip-link">Pular para o conteúdo</a>` (`index.html:67`), visível ao receber foco (`style.css:90-92`).
-- **Landmarks semânticos completos** — `<header>`, `<nav>`, `<main>`, `<footer>` (não `<div>`s genéricas), o que dá navegação por regiões a quem usa leitor de tela.
-- **Um único `<h1>`** na página, com hierarquia `h2 > h3` consistente em todas as seções — nenhum salto de nível encontrado.
-- **`lang="pt-BR"`** declarado no `<html>` (`index.html:2`) — critério 3.1.1 (Nível A), pré-requisito para conformidade AA.
-- **Ícones decorativos corretamente ocultados** (`aria-hidden="true"`) sempre acompanhados de texto visível equivalente (ex.: SVG do WhatsApp + "Agende uma consulta").
-- **Estrelas de avaliação com semântica correta** — `role="img" aria-label="Nota 5,0 de 5 estrelas"` em vez de apenas caracteres `★` soltos.
-- **Menu hamburguer acessível** — alterna `aria-expanded` e o próprio `aria-label` do botão conforme o estado (`script.js:12-19`), e os links ficam corretamente fora da árvore de tabulação quando o menu está fechado (`display:none`).
-- **Viewport sem bloqueio de zoom** — `content="width=device-width, initial-scale=1.0"` (`index.html:6`), sem `user-scalable=no` nem `maximum-scale`, o que preserva o zoom do usuário (essencial para 1.4.4 e 1.4.10).
-- **Contraste de texto muito bom na maior parte do conteúdo** — o texto principal (`#333333` sobre fundo claro) mede ≈12,6:1, e o texto secundário (`#666666`) ≈5,5–5,8:1 conforme o fundo — ambos folgados acima do mínimo de 4,5:1 exigido para texto normal.
-- **Links externos com `rel="noopener noreferrer"`** em todas as ocorrências — boa prática de segurança que também evita comportamento inesperado de navegação.
-
----
-
-## 🔴 Achados de alta prioridade
-
-### 1. Carrossel de avaliações roda automaticamente sem controle de pausa acessível a todos os usuários
-
-- **Onde:** `script.js:81-94` (autoplay a cada 6s) e `script.js:106-110` (pausa apenas em `mouseenter`/`focusin`)
-- **Critério WCAG:** 2.2.2 *Pause, Stop, Hide* (Nível A — obrigatório para conformidade AA, pois AA exige A+AA)
-- **Problema:** o conteúdo se move automaticamente por mais de 5 segundos, e a única forma de pausá-lo é passar o mouse por cima ou dar foco a um elemento dentro do carrossel. Isso não ajuda quem usa **toque** (mobile): o `touchend` sempre rechama `iniciarAutoplay()` (`script.js:119-126`), então o carrossel nunca fica pausado de forma persistente em um celular. Também não ajuda quem navega só por teclado sem chegar a focar um controle interno antes do texto mudar.
-- **Impacto real:** pessoas com dificuldade de leitura, baixa visão ou distúrbios de atenção podem não conseguir terminar de ler um depoimento antes que ele mude — e no celular (o dispositivo mais comum para esse tipo de site) não há como parar a troca automática de forma confiável.
-- **Recomendação:** adicionar um botão visível "Pausar"/"Reproduzir" (ícone ⏸/▶) próximo às setas, com estado persistente — e não retomar o autoplay automaticamente após uma interação de toque, apenas após um novo período de inatividade real.
-
-### 2. Indicadores (dots) do carrossel abaixo do tamanho mínimo de toque
-
-- **Onde:** `.carousel-dot` — `style.css:901-910` (9×9px, `gap:8px` entre eles)
-- **Critério WCAG:** 2.5.8 *Target Size (Minimum)* (Nível AA, WCAG 2.2) — exige no mínimo 24×24px CSS, ou espaçamento suficiente entre alvos menores para que seus centros fiquem a pelo menos 24px de distância.
-- **Problema:** os dots medem 9×9px com apenas 8px de espaçamento — a distância entre centros fica em torno de 17px, abaixo dos 24px exigidos mesmo pela exceção de espaçamento. Não há atributos como `title` compensando o alvo pequeno.
-- **Impacto real:** em telas de toque, esses botões são difíceis de acertar com precisão, especialmente para usuários com tremor, baixa destreza motora ou simplesmente dedos maiores.
-- **Recomendação:** manter o círculo visual pequeno (é um bom indicador visual), mas aumentar a **área clicável** para 24×24px via `padding` ou um pseudo-elemento `::before` maior que a bolinha visível, sem alterar o layout visual.
+- **Skip link funcional** — `<a href="#inicio" class="skip-link">Pular para o conteúdo</a>`, visível ao receber foco.
+- **Landmarks semânticos completos** — `<header>`, `<nav>`, `<main>`, `<footer>` (não `<div>`s genéricas).
+- **Um único `<h1>`** na página, com hierarquia `h2 > h3` consistente em todas as seções.
+- **`lang="pt-BR"`** declarado no `<html>` — critério 3.1.1 (Nível A).
+- **Ícones decorativos corretamente ocultados** (`aria-hidden="true"`) sempre acompanhados de texto visível equivalente.
+- **Estrelas de avaliação com semântica correta** — `role="img" aria-label="Nota 5,0 de 5 estrelas"`.
+- **Menu hamburguer acessível** — alterna `aria-expanded`/`aria-label` conforme o estado.
+- **Viewport sem bloqueio de zoom** — preserva o zoom do usuário (1.4.4 e 1.4.10).
+- **Contraste de texto muito bom** na maior parte do conteúdo (≈5,5 a 12,6:1, folgado acima do mínimo de 4,5:1).
+- **Links externos com `rel="noopener noreferrer"`** em todas as ocorrências.
 
 ---
 
-## 🟡 Achados de prioridade média
+## Achados e correções aplicadas
 
-### 3. Depoimentos longos são cortados visualmente sem forma de ler o restante
+### 🔴 1. Carrossel sem controle de pausa acessível a todos os usuários — ✅ Resolvido
 
-- **Onde:** `.avaliacao-card` com altura fixa (`height:172px`, `190px` no mobile) + `.avaliacao-texto` com `-webkit-line-clamp:4` (`style.css:826-837`, `846-856`)
-- **Problema:** avaliações mais longas (ex.: o depoimento de "D.B.", `index.html:460`, ou de "P.C.", `index.html:417`) são cortadas na 4ª linha sem reticências consistentes entre navegadores nem um link "ler mais". Curiosamente, o texto completo continua no HTML e **é lido integralmente por leitores de tela** — ou seja, hoje quem usa leitor de tela recebe mais informação do que quem vê a tela, o que é um sinal de inconsistência de conteúdo entre modalidades.
-- **Impacto real:** usuários videntes não conseguem avaliar a experiência completa relatada pelos pacientes — justamente o conteúdo que mais gera confiança na página.
-- **Recomendação:** ou aumentar a altura do card para acomodar o texto mais longo do conjunto, ou adicionar um botão "Ler depoimento completo" que expande o card (mantendo o texto sempre presente e legível, não escondido atrás de comportamento só-para-leitor-de-tela).
+- **Critério WCAG:** 2.2.2 *Pause, Stop, Hide* (Nível A)
+- **Problema original:** o autoplay (6s) só pausava com mouse ou foco; no toque (mobile), o `touchend` sempre religava o autoplay, então nunca ficava pausado de forma confiável.
+- **Correção:** adicionado um botão de pausa/retomar persistente (`#carouselPausa`, ícone ⏸/▶, `aria-pressed`) ao lado dos indicadores. Uma vez pausado pelo usuário, o autoplay não é retomado automaticamente por hover, foco ou toque — só quando o próprio usuário clica em "retomar". Testado: com o carrossel pausado, a posição não mudou mesmo esperando mais que o intervalo de autoplay (6,5s).
 
-### 4. Nenhum aviso de status ao trocar de depoimento no carrossel
+### 🔴 2. Indicadores (dots) abaixo do tamanho mínimo de toque — ✅ Resolvido
 
-- **Onde:** `#carouselTrack` (`index.html:405`), atualizado via `atualizar()` em `script.js:61-66`
+- **Critério WCAG:** 2.5.8 *Target Size (Minimum)* (Nível AA, WCAG 2.2)
+- **Problema original:** dots de 9×9px com 8px de espaçamento — distância entre centros de ~17px, abaixo dos 24px exigidos.
+- **Correção:** o círculo visual continua pequeno (9px), mas a área clicável de cada botão foi ampliada para 24×24px via `::before`. Testado: `getBoundingClientRect()` confirma 24×24px com 28px de distância entre centros.
+
+### 🟡 3. Depoimentos longos cortados sem forma de ler o restante — ✅ Resolvido
+
+- **Problema original:** avaliações longas eram cortadas em 4 linhas sem link "ler mais"; o texto completo só chegava a quem usava leitor de tela.
+- **Correção:** botão "Ler mais" adicionado automaticamente (via `script.js`, medindo `scrollHeight` vs `clientHeight`) a cada depoimento que é visualmente cortado. Abre um modal acessível com o texto completo — foco preso no botão de fechar, `Esc` fecha, foco retorna ao botão que abriu — e **pausa o carrossel enquanto o modal estiver aberto**, retomando (se aplicável) só ao fechar. Testado: 4 dos 15 depoimentos precisam do botão; nenhum card estourou a altura fixa.
+
+### 🟡 4. Nenhum aviso de status ao trocar de depoimento — ✅ Resolvido
+
 - **Critério WCAG:** 4.1.3 *Status Messages* (Nível AA)
-- **Problema:** a troca de slide (por autoplay, setas ou dots) não é anunciada a quem usa leitor de tela — não há `aria-live` nem `role="status"` associado à região que muda.
-- **Recomendação:** envolver a região do depoimento ativo (ou um texto oculto visualmente do tipo "Avaliação 3 de 15") em um contêiner com `aria-live="polite"`, atualizado a cada troca de slide.
+- **Correção:** região `role="status" aria-live="polite"` (`#carouselStatus`) que anuncia "Avaliação X de 15, de [autor]" a cada troca de slide, por autoplay, setas ou dots.
 
-### 5. Contraste no limite mínimo em dois elementos
+### 🟡 5. Contraste no limite mínimo em dois elementos — ✅ Resolvido
 
-- **Onde:**
-  - `.destaque` (badge "CRM/SC 34061" no hero, `index.html:129`) — cor `var(--primary-light)` (`#3D7B6A`) sobre `var(--bg-body)` (`#FAFAF7`), `style.css:320-325`. Cálculo estimado: **≈4,77:1** (mínimo exigido: 4,5:1 para texto normal).
-  - `.publicacao-cta-texto` (card "Acesse a produção científica completa", `index.html:364-366`) — texto branco sobre gradiente `--primary → --primary-light` (`style.css:655-679`). No ponto mais claro do gradiente, o contraste estimado cai para **≈4,53:1**.
 - **Critério WCAG:** 1.4.3 *Contrast (Minimum)* (Nível AA)
-- **Problema:** ambos os valores foram calculados manualmente e ficam tecnicamente acima do mínimo, mas com margem muito pequena — qualquer variação de renderização de fonte, sub-pixel rendering ou ajuste futuro de cor pode empurrá-los para reprovação.
-- **Recomendação:** validar com uma ferramenta de contraste real (ex.: extensão axe DevTools, Lighthouse ou WebAIM Contrast Checker) e, por segurança, escurecer levemente `--primary-light` (ex.: para `#356B5C`) ou aplicar o texto do CTA apenas sobre a cor `--primary` sólida (mais escura), sem gradiente na área do texto.
+- **Problema original:** o badge "CRM/SC 34061" (`~4,77:1`) e o texto do card de CTA científico sobre gradiente (`~4,53:1`) ficavam perto demais do mínimo de 4,5:1.
+- **Correção:** novo token `--a11y-accent: #326557` (variante mais escura de `--primary-light`), usado no badge do hero. Contraste recalculado: **6,41:1** contra o fundo do hero e **6,70:1** contra branco — folga confortável acima do mínimo.
+- **Nota:** o card de CTA científico foi posteriormente redesenhado (ver achado adicional abaixo) para fundo claro com texto `--primary`, o que elevou o contraste ali para **7,98:1**.
 
-### 6. Links repetidos "Ver artigo →" sem nome acessível distinto
+### 🟡 6. Links repetidos "Ver artigo →" sem nome acessível distinto — ✅ Resolvido
 
-- **Onde:** 8 ocorrências idênticas na seção "Ciência" (`index.html:263, 277, 291, 305, 319, 333, 347, 361`)
-- **Critério WCAG:** 2.4.4 *Link Purpose (In Context)* (Nível A) — tecnicamente atendido, pois o título do artigo precede cada link dentro do mesmo `<article>`. Mas é uma prática frágil.
-- **Problema:** ferramentas de leitor de tela costumam oferecer navegação "por lista de links", que extrai os links da página fora do contexto visual. Nessa lista, um usuário ouviria "Ver artigo", repetido 8 vezes seguidas, sem saber a qual publicação cada um se refere.
-- **Recomendação:** adicionar `aria-label` a cada link reforçando o artigo, por exemplo `aria-label="Ver artigo: Hippocampus-dependent fear conditioning..."`, mantendo o texto visível "Ver artigo →" inalterado.
+- **Critério WCAG:** 2.4.4 *Link Purpose (In Context)* (Nível A)
+- **Correção:** `aria-label="Ver artigo: [título completo da publicação]"` adicionado individualmente às 8 ocorrências, mantendo o texto visível "Ver artigo →" inalterado.
 
----
+### 🟢 7. Estilo de foco de teclado não customizado — ✅ Resolvido
 
-## 🟢 Achados de baixa prioridade (refinamento)
-
-### 7. Estilo de foco de teclado não customizado
-
-- **Onde:** nenhuma regra `:focus` ou `:focus-visible` além de `.skip-link:focus` (`style.css:90-92`)
 - **Critério WCAG:** 2.4.7 *Focus Visible* (Nível AA)
-- **Observação:** o navegador aplica um contorno padrão (geralmente azul), então o critério **não está tecnicamente violado**. Mas em elementos sobre o fundo verde do cabeçalho (`.nav-link`) ou sobre cards brancos com sombra sutil, o anel de foco padrão pode ficar pouco perceptível dependendo do navegador/SO.
-- **Recomendação:** definir um `:focus-visible` explícito e de alto contraste (ex.: contorno de 2-3px na cor de destaque, com `outline-offset`), garantindo consistência visual em todos os navegadores e blindando o site contra qualquer futura regra que remova o outline padrão sem querer.
+- **Correção:** regra global `:focus-visible { outline: 3px solid var(--a11y-accent); outline-offset: 3px; }`, com uma sobreposição (`.topbar :focus-visible, footer :focus-visible`) trocando para branco nos dois trechos de fundo verde escuro (cabeçalho e rodapé), onde o verde do anel perderia contraste.
+- **Testado com Tab real** (não só `.focus()` via script, que tem heurística própria e menos confiável): no link "Início" do menu, o anel aparece branco, sólido, 3px, com 3px de distância — bem visível sobre o verde. No link "Ver artigo" (fundo branco), o anel aparece na cor `--a11y-accent` (`rgb(50,101,87)`) — também bem visível.
 
-### 8. Textos muito pequenos nos cards de publicação
+### 🟢 8. Textos muito pequenos nos cards de publicação — ✅ Resolvido
 
-- **Onde:** `.publicacao-tag` (`font-size:0.58rem` ≈ 9,3px, `style.css:590-601`) e `.publicacao-revista-meta` (`font-size:0.66rem` ≈ 10,6px, `style.css:585-588`)
-- **Observação:** o contraste de cor está adequado e o uso de `rem` preserva o zoom do navegador, então não há violação formal de WCAG. Mas abaixo de ~12px a leitura fica desconfortável para grande parte dos usuários, especialmente pessoas com baixa visão que não chegam a aplicar zoom.
-- **Recomendação:** elevar esses dois elementos para pelo menos `0.72rem`–`0.75rem` (~11,5–12px), redistribuindo o espaço do card se necessário.
+- **Correção:** `.publicacao-tag` de 0,58rem (~9,3px) para 0,72rem (~11,5px); `.publicacao-revista-meta` de 0,66rem (~10,6px) para 0,75rem (~12px). Testado: nenhum dos 8 cards de publicação estourou a largura do cabeçalho do card.
 
-### 9. Depoimento duplicado
+### 🟢 9. Depoimento duplicado — ✅ Resolvido (correção manual do Arliones)
 
-- **Onde:** o depoimento de "C.M." ("Profissional humano e atencioso. Recomendo a todos.") aparece **duas vezes**, em `index.html:488-489` e `index.html:572-573`.
-- **Observação:** não é um problema de acessibilidade técnica, mas de qualidade de conteúdo — reduz a credibilidade da seção de avaliações e pode ser notado por um paciente atento.
-- **Recomendação:** remover uma das duas ocorrências ou substituí-la por outra avaliação real do Google.
+- **Problema original:** o depoimento de "C.M." aparecia duas vezes.
+- **Correção:** uma das duas ocorrências foi removida diretamente pelo Arliones — confirmado que só resta uma no HTML atual.
 
-### 10. `alt` da foto do herói é minimalista
+### 🟢 10. `alt` da foto do herói minimalista — ✅ Resolvido
 
-- **Onde:** `<img src="img/foto1.jpg" alt="Dr. Alexandre A. Hoeller">` (`index.html:124`)
-- **Observação:** tecnicamente válido (1.1.1, Nível A), mas descreve apenas quem aparece, não o que a imagem comunica.
-- **Recomendação:** um `alt` levemente mais descritivo ajuda quem usa leitor de tela a ter a mesma primeira impressão que um usuário vidente — ex.: `alt="Dr. Alexandre A. Hoeller, médico, sorrindo, vestindo jaleco branco"` (ajustar à foto real).
+- **Correção:** `alt` alterado de `"Dr. Alexandre A. Hoeller"` para `"Dr. Alexandre A. Hoeller sorrindo, vestindo jaleco branco e estetoscópio no pescoço"`, descrevendo o que a foto de fato comunica.
 
-### 11. Sem indicação da seção ativa durante a rolagem
+### 🟢 11. Sem indicação da seção ativa durante a rolagem — ✅ Resolvido
 
-- **Onde:** `.nav-link` (`index.html:105-112`) — nenhum dos links recebe uma classe ou `aria-current="true"` conforme a seção visível muda.
-- **Observação:** não é exigência do WCAG AA, mas é uma heurística de usabilidade (Nielsen: *visibilidade do status do sistema*) importante numa página de rolagem longa com 8 itens de menu.
-- **Recomendação:** usar `IntersectionObserver` para aplicar `aria-current="true"` (e um estilo visual correspondente) ao link da seção atualmente visível.
+- **Correção:** `IntersectionObserver` (`script.js`) observa cada seção correspondente a um item do menu e aplica `aria-current="true"` à seção cuja faixa central da viewport está ocupando no momento; `.nav-link[aria-current="true"]` recebe um destaque visual (fundo translúcido, mais forte que o hover). Testado: ao rolar de "Quem sou" até "Avaliações", o item ativo do menu acompanhou corretamente.
 
-### 12. Sem respeito a `prefers-reduced-motion`
+### 🟢 12. Sem respeito a `prefers-reduced-motion` — ✅ Resolvido
 
-- **Onde:** `html{scroll-behavior:smooth}` (`style.css:29-31`) e diversas transições de `transform` em hover (cards, botões, ícone social)
-- **Observação:** critério de nível AAA (2.3.3), não obrigatório para conformidade AA — incluído aqui como melhoria de conforto, não como não-conformidade.
-- **Recomendação:** envolver `scroll-behavior:smooth` e as animações de translação em `@media (prefers-reduced-motion: no-preference) { ... }`, beneficiando usuários com sensibilidade a movimento sem custo para os demais.
+- **Correção:** bloco `@media (prefers-reduced-motion: reduce)` desativando `scroll-behavior:smooth` e reduzindo toda `animation`/`transition` do site a 0,01ms — padrão amplamente recomendado que não exige tocar em cada regra de transição individualmente.
+
+### Achado adicional (fora da numeração original): estética do card de CTA científico
+
+Depois da correção do item 5, o gradiente do card "Acesse a produção científica completa" ficou visualmente "achatado" (as duas cores do gradiente ficaram próximas demais). Foram produzidas 3 alternativas para comparação visual e o Arliones escolheu a opção "cartão claro": o card passou a usar a mesma linguagem visual dos cards de publicação ao lado (fundo branco, borda esquerda colorida, selo circular com seta), eliminando de vez o risco de contraste do bloco escuro e integrando melhor o card ao grid.
 
 ---
 
@@ -134,27 +107,27 @@ Os pontos que impedem hoje uma conformidade AA completa se concentram quase todo
 
 | Critério | Nível | Status | Achado relacionado |
 |---|---|---|---|
-| 1.1.1 Conteúdo não textual | A | ✅ Atende | — |
+| 1.1.1 Conteúdo não textual | A | ✅ Atende | #10 (reforçado) |
 | 1.3.1 Informações e relações | A | ✅ Atende | — |
-| 1.4.3 Contraste (mínimo) | AA | ⚠️ Verificar | #5 |
+| 1.4.3 Contraste (mínimo) | AA | ✅ Atende (6,4–8,0:1) | #5 |
 | 1.4.4 Redimensionar texto | AA | ✅ Atende | — |
 | 1.4.10 Reflow | AA | ✅ Atende (não testado em navegador real) | — |
-| 2.2.2 Pausar, parar, ocultar | A | ❌ Não atende | #1 |
+| 2.2.2 Pausar, parar, ocultar | A | ✅ Atende | #1 |
+| 2.3.3 Animação por interação | AAA (extra) | ✅ Atende | #12 |
 | 2.4.1 Bypass Blocks | A | ✅ Atende | Skip link |
-| 2.4.4 Propósito do link (contexto) | A | ⚠️ Frágil | #6 |
+| 2.4.4 Propósito do link (contexto) | A | ✅ Atende (reforçado) | #6 |
 | 2.4.6 Cabeçalhos e rótulos | AA | ✅ Atende | — |
-| 2.4.7 Foco visível | AA | ✅ Atende (padrão do navegador) | #7 |
-| 2.5.8 Tamanho do alvo (mínimo) | AA | ❌ Não atende | #2 |
+| 2.4.7 Foco visível | AA | ✅ Atende (customizado e testado) | #7 |
+| 2.5.8 Tamanho do alvo (mínimo) | AA | ✅ Atende | #2 |
 | 3.1.1 Idioma da página | A | ✅ Atende | — |
 | 3.1.2 Idioma de trechos | AA | ✅ Atende (títulos/nomes próprios isentos) | — |
 | 4.1.2 Nome, função, valor | A | ✅ Atende | — |
-| 4.1.3 Mensagens de status | AA | ❌ Não atende | #4 |
+| 4.1.3 Mensagens de status | AA | ✅ Atende | #4 |
 
 ---
 
 ## Próximos passos recomendados
 
-1. Resolver os dois achados 🔴 do carrossel primeiro — são os únicos que hoje impedem a conformidade formal com AA.
-2. Rodar uma auditoria automatizada (axe DevTools ou Lighthouse) sobre a página publicada para confirmar os contrastes calculados manualmente (#5) e capturar qualquer regressão futura.
-3. Tratar os itens 🟡 e 🟢 como um backlog de polimento — nenhum deles bloqueia lançamento, mas juntos elevam a experiência de leitura e a confiança na página (especialmente #3 e #9, que afetam diretamente a seção de avaliações).
-4. Repetir esta análise sempre que uma seção nova for adicionada (ex.: quando as pendências de conteúdo do `TODO.md` forem resolvidas), já que novas seções tendem a reintroduzir os mesmos padrões (cards, carrosséis, gradientes).
+1. Rodar uma auditoria automatizada (axe DevTools ou Lighthouse) sobre a página **publicada** (não só local) como checagem final independente — as correções acima foram validadas manualmente em Chromium, uma ferramenta automatizada pode pegar algo que passou despercebido.
+2. Repetir esta análise sempre que uma seção nova for adicionada (ex.: quando as pendências de conteúdo do `TODO.md` forem resolvidas — testemunhos reais, logo em alta resolução, etc.), já que novas seções tendem a reintroduzir os mesmos padrões (cards, carrosséis, gradientes) que motivaram os achados aqui.
+3. Ao adicionar qualquer novo componente com cor de texto sobre fundo colorido (badges, CTAs, gradientes), reaproveitar o token `--a11y-accent` ou recalcular o contraste antes de publicar — foi a causa raiz do achado #5.

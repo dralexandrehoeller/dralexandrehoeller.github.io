@@ -28,6 +28,30 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
   // ===================================================
+  // Marca no menu qual seção está visível durante a rolagem
+  // ===================================================
+  const itensNav = Array.from(navMenu.querySelectorAll('.nav-link'))
+    .map(function (link) {
+      const secao = document.getElementById(link.getAttribute('href').slice(1));
+      return secao ? { link: link, secao: secao } : null;
+    })
+    .filter(Boolean);
+
+  if (itensNav.length && 'IntersectionObserver' in window) {
+    const observadorSecoes = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        const item = itensNav.find(function (i) { return i.secao === entry.target; });
+        if (!item) return;
+        itensNav.forEach(function (i) { i.link.removeAttribute('aria-current'); });
+        item.link.setAttribute('aria-current', 'true');
+      });
+    }, { rootMargin: '-45% 0px -45% 0px', threshold: 0 });
+
+    itensNav.forEach(function (item) { observadorSecoes.observe(item.secao); });
+  }
+
+  // ===================================================
   // Carrossel de avaliações (Google)
   // ===================================================
   const track = document.getElementById('carouselTrack');
