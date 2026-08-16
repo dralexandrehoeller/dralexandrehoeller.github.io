@@ -459,6 +459,8 @@ footer :focus-visible{
     color:var(--text-color);
     line-height:1.8;
     margin-bottom:16px;
+    text-align:justify;
+    hyphens:auto;
 }
 
 .nota-secao{
@@ -527,6 +529,8 @@ footer :focus-visible{
     font-size:0.95rem;
     color:var(--text-muted);
     line-height:1.65;
+    text-align:justify;
+    hyphens:auto;
 }
 
 /* ==================================================
@@ -925,6 +929,8 @@ footer :focus-visible{
     -webkit-line-clamp:4;
     -webkit-box-orient:vertical;
     overflow:hidden;
+    text-align:justify;
+    hyphens:auto;
 }
 
 .avaliacao-autor{
@@ -1298,6 +1304,8 @@ footer{
     font-style:italic;
     line-height:1.75;
     margin:14px 0 18px;
+    text-align:justify;
+    hyphens:auto;
 }
 
 .avaliacao-modal-autor{
