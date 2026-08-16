@@ -600,12 +600,12 @@ a{
 }
 
 .publicacao-revista-meta{
-    font-size:0.66rem;
+    font-size:0.75rem;
     color:var(--text-muted);
 }
 
 .publicacao-tag{
-    font-size:0.58rem;
+    font-size:0.72rem;
     font-weight:700;
     letter-spacing:0.4px;
     text-transform:uppercase;
@@ -668,41 +668,55 @@ a{
     transition:color .2s, gap .2s;
 }
 
-/* Card-botão que preenche o espaço vazio do grid de publicações */
+/* Card-botão que preenche o espaço vazio do grid de publicações —
+   mesma linguagem visual dos cards de publicação ao lado (fundo claro,
+   borda esquerda colorida), em vez de um bloco escuro isolado */
 .publicacao-cta-card{
     display:flex;
     align-items:center;
-    justify-content:center;
-    text-align:center;
+    gap:14px;
     min-height:120px;
-    background:linear-gradient(135deg, var(--primary), var(--a11y-accent));
-    color:var(--white);
+    background:var(--white);
+    border:1px solid #E2E8F0;
+    border-left:3px solid var(--primary-light);
     border-radius:12px;
     padding:16px;
-    box-shadow:0 4px 14px rgba(40, 89, 79, 0.22);
-    transition:transform .25s, box-shadow .25s;
+    box-shadow:var(--shadow-sm);
+    transition:transform .25s, box-shadow .25s, border-color .25s;
 }
 
 .publicacao-cta-card:hover{
     transform:translateY(-3px);
-    box-shadow:0 8px 20px rgba(40, 89, 79, 0.3);
+    box-shadow:var(--shadow-md);
+    border-left-color:var(--primary);
+}
+
+.publicacao-cta-selo{
+    flex-shrink:0;
+    width:36px;
+    height:36px;
+    border-radius:50%;
+    background:var(--bg-alt);
+    color:var(--primary);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:1.1rem;
+    transition:background .25s, color .25s, transform .25s;
+}
+
+.publicacao-cta-card:hover .publicacao-cta-selo{
+    background:var(--primary);
+    color:var(--white);
+    transform:translateX(3px);
 }
 
 .publicacao-cta-texto{
+    color:var(--primary);
     font-weight:700;
     font-size:0.88rem;
     letter-spacing:0.2px;
     line-height:1.4;
-}
-
-.publicacao-cta-texto::after{
-    content:" →";
-    display:inline-block;
-    transition:transform .2s;
-}
-
-.publicacao-cta-card:hover .publicacao-cta-texto::after{
-    transform:translateX(4px);
 }
 
 .publicacao-link:hover{
